@@ -1,32 +1,31 @@
 import range from '../helper/range.js'
 
-const list = range(5)
+const list = range(10)
 
-export default function binarySearch (list, findValue) {
-  let index = Math.floor((list.length - 1) / 2)
-  let value = list[index]
+export default function binarySearch (sortedList, findValue) {
+  let start = 0;
+  let end = sortedList.length - 1;
+  let howMany = 0;
 
-  for (let i = 0; i < list.length; i++ ) {
-    if (value === findValue) return {
-      success: true,
-      index,
-      howMany: i + 1,
-    };
-    const direction = value > findValue ? 'LEFT' : 'RIGHT';
-    switch (direction) {
-      case 'LEFT':
-        index = index / 2
-        value = list[index]
-        break;
-      case 'RIGHT':
-        index = index + (index / 2)
-        value = list[index]
-        break;
-    }
+  while (start <= end) {
+    howMany++
+    const mid = Math.floor((start + end) / 2);
+
+    if (sortedList[mid] === findValue) return { success: true, index: mid, howMany };
+
+    findValue < sortedList[mid] ? end = mid - 1 : start = mid + 1;
   }
-  return null;
+
+  return {
+    success: false,
+    index: -1,
+    howMany
+  };
 }
 
+const target = 4;
+const correctIndex = list.findIndex(item => item === target);
 console.log(
-  binarySearch(list, 3),
+  binarySearch(list, target),
+  `correctIndex : ${correctIndex}`
 )
