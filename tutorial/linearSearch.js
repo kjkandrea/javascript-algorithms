@@ -10,7 +10,7 @@ export default function linearSearch(list, findValue) {
   }
 
   return {
-    complete: index > 0,
+    success: index > 0,
     index,
     howMany
   }
