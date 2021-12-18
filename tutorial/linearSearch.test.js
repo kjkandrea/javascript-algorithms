@@ -10,5 +10,11 @@ describe('linearSearch', () => {
 
       expect(howMany).toBe(1)
     })
+
+    it('4999을 찾을때에 5000번의 탐색을 거친다', () => {
+      const { howMany } = linearSearch(list, 4999)
+
+      expect(howMany).toBe(5000)
+    })
   })
 })
