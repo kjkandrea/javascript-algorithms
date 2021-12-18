@@ -1,7 +1,10 @@
-import { sum } from './range.js'
+import range from './range.js'
 
-describe('sum', () => {
-  it('sum(1, 2) is 3', () => {
-  expect(sum(1, 2)).toBe(3)
+describe('range', () => {
+  describe('range(10)', () => {
+  const result = range(10)
+    it('length is 10', () => {
+      expect(result.length).toBe(10)
+    })
   })
 })

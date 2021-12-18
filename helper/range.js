@@ -1,7 +1,7 @@
-export function sum(a, b) {
-  return a + b
+export default function range (length) {
+  const array = [];
+  for (let i = 0; i < length; i++) {
+    array.push(i)
+  }
+  return array;
 }
-
-console.log(
-sum(1, 2)
-)

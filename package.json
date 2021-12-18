@@ -1,7 +1,7 @@
 {
   "name": "javascript-algoritms",
   "scripts": {
-    "test": "jest"
+    "test": "jest --watchAll"
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",
