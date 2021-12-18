@@ -6,11 +6,15 @@ describe('binarySearch', () => {
 
   describe('list 의 길이가 10000 이면', () => {
     describe('[성공 테스트] 1을 찾을때에', () => {
-      const { index } = binarySearch(list, 1)
+      const { index, success } = binarySearch(list, 1)
 
       it('index 는 1이다.', () => {
         expect(index).toBe(1)
       });
+
+      it('success 는 true 이다.', () => {
+        expect(success).toBe(true)
+      })
     })
   })
 })
