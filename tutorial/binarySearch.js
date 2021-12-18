@@ -8,7 +8,10 @@ export default function binarySearch(list, findValue) {
 
   let middleIndex = Math.floor((list.length - 1) / 2);
   for (let i = 0; i < list.length; i++) {
-    if (index > 0) break;
+    if (1 >= middleIndex) {
+      howMany = i;
+      break;
+    }
     if (list[middleIndex] !== findValue) {
       middleIndex = Math.floor(middleIndex / 2);
       continue;
@@ -25,5 +28,5 @@ export default function binarySearch(list, findValue) {
 }
 
 console.log(
-  binarySearch(list, 1)
+  binarySearch(list, 1000)
 )
