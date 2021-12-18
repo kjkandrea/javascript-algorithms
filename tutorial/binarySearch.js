@@ -1,7 +1,3 @@
-import range from '../helper/range.js'
-
-const list = range(10)
-
 export default function binarySearch (sortedList, findValue) {
   let start = 0;
   let end = sortedList.length - 1;
@@ -22,10 +18,3 @@ export default function binarySearch (sortedList, findValue) {
     howMany
   };
 }
-
-const target = 4;
-const correctIndex = list.findIndex(item => item === target);
-console.log(
-  binarySearch(list, target),
-  `correctIndex : ${correctIndex}`
-)
