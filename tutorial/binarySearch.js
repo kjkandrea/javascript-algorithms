@@ -12,16 +12,21 @@ export default function binarySearch (list, findValue) {
       index,
       howMany: i + 1,
     };
-    const isLeft = value > findValue;
-    console.log('isLeft : %s', isLeft)
-    if (isLeft) {
-      index = index / 2
-      value = list[index]
+    const direction = value > findValue ? 'LEFT' : 'RIGHT';
+    switch (direction) {
+      case 'LEFT':
+        index = index / 2
+        value = list[index]
+        break;
+      case 'RIGHT':
+        index = index + (index / 2)
+        value = list[index]
+        break;
     }
   }
   return null;
 }
 
 console.log(
-  binarySearch(list, 1),
+  binarySearch(list, 3),
 )
