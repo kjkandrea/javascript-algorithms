@@ -1,5 +1,6 @@
 {
   "name": "javascript-algoritms",
+  "type": "module",
   "scripts": {
     "test": "jest --watchAll"
   },

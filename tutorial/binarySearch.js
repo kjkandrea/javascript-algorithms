@@ -1,3 +1,7 @@
+import range from '../helper/range.js'
+
+const list = range(10000)
+
 export default function binarySearch(list, findValue) {
   let index = -1;
   let howMany = list.length;
@@ -19,3 +23,7 @@ export default function binarySearch(list, findValue) {
     howMany
   }
 }
+
+console.log(
+  binarySearch(list, 1)
+)
