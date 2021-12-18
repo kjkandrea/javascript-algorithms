@@ -1,0 +1,14 @@
+{
+  "name": "javascript-algoritms",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "@types/jest": "^27.0.3",
+    "jest": "^27.4.5",
+    "jest-cli": "^27.4.5",
+    "nodemon": "^2.0.15"
+  }
+}
