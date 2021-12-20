@@ -24,7 +24,13 @@ export function OofNCubic (list, fn) {
         fn(list[i])
 }
 
+// O(logN)
 export function OofLogN (list, fn) {
   for (let i = 2; i < list.length ;i = i * 2)
     fn(list[i])
+}
+
+// O(sqrtN)
+export function OSquareRootN(list, fn) {
+  fn(list[0])
 }
