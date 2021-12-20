@@ -1,3 +1,4 @@
+// O(N) : O of n
 export default function linearSearch(list, findValue) {
   let index = -1;
   let howMany = list.length;

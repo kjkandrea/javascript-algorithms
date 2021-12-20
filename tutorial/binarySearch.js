@@ -1,3 +1,4 @@
+// O(log N) : o of log n
 export default function binarySearch (sortedList, findValue) {
   let start = 0;
   let end = sortedList.length - 1;
