@@ -25,5 +25,6 @@ export function OofNCubic (list, fn) {
 }
 
 export function OofLogN (list, fn) {
-
+  for (let i = 2; i < list.length ;i = i * 2)
+    fn(list[i])
 }
