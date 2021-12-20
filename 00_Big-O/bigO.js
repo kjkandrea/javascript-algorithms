@@ -23,3 +23,7 @@ export function OofNCubic (list, fn) {
       for (let k = 0; k < list.length ;k++)
         fn(list[i])
 }
+
+export function OofLogN (list, fn) {
+
+}
