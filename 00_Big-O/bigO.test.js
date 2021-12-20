@@ -1,4 +1,4 @@
-import { Oof1, OofN, OofNSquare } from './bigO'
+import { Oof1, OofN, OofNSquare, OofNCubic } from './bigO'
 import range from '../helper/range'
 
 describe('bigO', () => {
@@ -29,6 +29,15 @@ describe('bigO', () => {
     it(`sortedArray length 가 ${LENGTH} 일때에 ${LENGTH * LENGTH}번 실행된다.`, () => {
       OofNSquare(sortedArray, fn)
       expect(fn.mock.calls.length).toBe(LENGTH * LENGTH)
+    })
+  })
+
+  describe('OofNCubic 은', () => {
+    const fn = jest.fn(() => {})
+
+    it(`sortedArray length 가 ${LENGTH} 일때에 ${LENGTH * LENGTH * LENGTH}번 실행된다.`, () => {
+      OofNCubic(sortedArray, fn)
+      expect(fn.mock.calls.length).toBe(LENGTH * LENGTH * LENGTH)
     })
   })
 })
