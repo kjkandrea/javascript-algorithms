@@ -2,7 +2,7 @@ import { Oof1, OofN, OofNSquare, OofNCubic, OofLogN, OSquareRootN } from './bigO
 import range from '../helper/range'
 
 describe('bigO', () => {
-  const LENGTH = 100;
+  const LENGTH = 43; // 1 - 100
   const sortedArray = range(LENGTH)
 
   describe('Oof1 은', () => {
@@ -55,7 +55,7 @@ describe('bigO', () => {
   describe('OSquareRootN 은', () => {
     const fn = jest.fn(() => {})
 
-    const sqrt = Math.sqrt(LENGTH)
+    const sqrt = Math.ceil(Math.sqrt(LENGTH))
 
     it(`sortedArray length 가 ${LENGTH} 일때에 ${sqrt}번 실행된다.`, () => {
       OSquareRootN(sortedArray, fn)
