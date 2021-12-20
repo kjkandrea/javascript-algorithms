@@ -32,5 +32,6 @@ export function OofLogN (list, fn) {
 
 // O(sqrtN)
 export function OSquareRootN(list, fn) {
-  fn(list[0])
+  for (let i = 0; i < Math.sqrt(list.length) ;i++)
+    fn(list[i])
 }
