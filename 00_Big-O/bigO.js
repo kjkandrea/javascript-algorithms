@@ -37,5 +37,7 @@ export function OSquareRootN(list, fn) {
 }
 
 export function OofNM(nList, mList, fn) {
-
+  for (let i = 0; i < nList.length ;i++)
+    for (let j = 0; j < mList.length ;j++)
+      fn(nList[i])
 }

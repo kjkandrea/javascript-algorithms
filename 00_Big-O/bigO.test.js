@@ -68,9 +68,11 @@ describe('bigO', () => {
 
     const n = range(LENGTH)
     const m = range(Math.floor(LENGTH/2))
-    it(`n length 가 ${LENGTH}, m length 가 ${Math.floor(LENGTH/2)} 일때에 ${n * m}번 실행된다.`, () => {
+    const nm = n.length * m.length
+    it(`n length 가 ${LENGTH}, m length 가 ${Math.floor(LENGTH/2)} 일때에 ${nm}번 실행된다.`, () => {
       OofNM(n, m, fn)
-      expect(fn.mock.calls.length).toBe(n * m)
+
+      expect(fn.mock.calls.length).toBe(nm)
     })
   })
 })
