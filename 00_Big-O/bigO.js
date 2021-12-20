@@ -12,7 +12,8 @@ export function OofN (list, fn) {
 // O(n^2)
 export function OofNSquare (list, fn) {
   for (let i = 0; i < list.length ;i++)
-    fn(list[i])
+    for (let j = 0; j < list.length ;j++)
+      fn(list[i])
 }
 
 // O(n^2)
