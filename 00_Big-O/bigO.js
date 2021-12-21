@@ -16,7 +16,7 @@ export function OofNSquare (list, fn) {
       fn(list[i])
 }
 
-// O(n^2)
+// O(n^3)
 export function OofNCubic (list, fn) {
   for (let i = 0; i < list.length ;i++)
     for (let j = 0; j < list.length ;j++)
@@ -36,6 +36,7 @@ export function OSquareRootN(list, fn) {
     fn(list[i])
 }
 
+// O(NM)
 export function OofNM(nList, mList, fn) {
   for (let i = 0; i < nList.length ;i++)
     for (let j = 0; j < mList.length ;j++)
