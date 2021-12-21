@@ -14,6 +14,6 @@ export function findSum (arr, weight) {
   return -1
 }
 
-export function findSumInTheBook () {
+export function findSumMoreThink (arr, weight) {
 
 }
