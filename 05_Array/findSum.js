@@ -14,6 +14,19 @@ export function findSum (arr, weight) {
   return -1
 }
 
-export function findSumMoreThink (arr, weight) {
+// O(n)
+export function findSumInTheBook (arr, weight) {
+  const hashtable = {} // key: diff, value: i
 
+  for (let i = 0; i < arr.length; i++) {
+    const current = arr[i]
+    const diff = weight - current
+
+    if (hashtable[current] !== undefined) {
+      return [i, hashtable[current]]
+    }
+
+    hashtable[diff] = i;
+  }
+  return -1
 }
