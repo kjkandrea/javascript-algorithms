@@ -11,5 +11,9 @@ export function insert (array, insertIndex, payload) {
 }
 
 export function remove (array, removeIndex) {
+  for (let i = removeIndex; i < array.length; i++ ) {
+    array[i] = array[i + 1]
+  }
 
+  array.pop()
 }
