@@ -5,6 +5,14 @@ export class Node {
   }
 }
 
+/**
+ * 실용성이 있을까?
+ * @find O(n) : 노드간의 관계가 링크로만 저장되기 때문에 중간의 한 노드를 찾으려면 순회해 보는 것만이 유일한 방법.
+ * @insert O(1) : 매우 빠름
+ * @remove O(n) : 이건 내가 구현을 잘못한건가? value 를 찾으려면 find 가 필요하다. 최악.
+ *
+ * 이걸 어따써야하나?????
+ */
 export class SinglyLinkedList {
   constructor () {
     this.head = null

@@ -1,5 +1,8 @@
 import { SinglyLinkedList } from './generator.js'
 
+/**
+ * {@link SinglyLinkedList}
+ */
 const linkedList = new SinglyLinkedList()
 linkedList.append('🍰') // O(1)
 linkedList.append('🍌') // O(1)
