@@ -39,6 +39,11 @@ export class SinglyLinkedList {
     prevNode.next = node;
   }
 
+  remove(value) {
+    const node = this.find(value)
+    console.log(node)
+  }
+
   // O(n)
   toArray() {
     const array = [];
