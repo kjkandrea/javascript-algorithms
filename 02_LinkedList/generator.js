@@ -33,6 +33,13 @@ export class SinglyLinkedList {
   }
 
   // O(n)
+  insert(prevNode, newValue) {
+    const node = new Node(newValue)
+    node.next = prevNode.next;
+    prevNode.next = node;
+  }
+
+  // O(n)
   toArray() {
     const array = [];
     let curNode = this.head;
