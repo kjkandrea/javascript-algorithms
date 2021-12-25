@@ -11,3 +11,10 @@ class Stack {
     return this.data.pop()
   }
 }
+
+const stack = new Stack()
+stack.push('🍎')
+stack.push('🍇')
+stack.push('🍉')
+const item = stack.pop()
+console.log(item)
