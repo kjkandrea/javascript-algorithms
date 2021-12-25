@@ -1,11 +1,11 @@
-import { Node, SinglyLinkedList } from './generator.js'
+import { SinglyLinkedList } from './generator.js'
 
 const linkedList = new SinglyLinkedList()
-linkedList.append('🍰')
-linkedList.append('🍌')
-linkedList.append('🍎')
-const bananaNode = linkedList.find('🍌');
-linkedList.insert(bananaNode, '🍇')
-linkedList.remove('🍌')
-const array = linkedList.toArray()
+linkedList.append('🍰') // O(1)
+linkedList.append('🍌') // O(1)
+linkedList.append('🍎') // O(1)
+const bananaNode = linkedList.find('🍌'); // O(n)
+linkedList.insert(bananaNode, '🍇') // O(1)
+linkedList.remove('🍌') // O(n)
+const array = linkedList.toArray() // O(1)
 console.log(array)

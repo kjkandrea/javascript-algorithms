@@ -40,6 +40,7 @@ export class SinglyLinkedList {
     prevNode.next = node;
   }
 
+  // O(n)
   remove(value) {
     const node = this.find(value)
     if (node === null) return;
