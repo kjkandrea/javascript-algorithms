@@ -1,5 +1,5 @@
 import range from '../helper/range'
-import { insert } from './insertAndRemove'
+import { insert, remove } from './insertAndRemove'
 
 describe('insert', () => {
   const TEST_insertLengthCheck = (insertIndex, payload) => it(
@@ -37,6 +37,14 @@ describe('insert', () => {
 })
 
 describe('remove', () => {
+  describe('remove(array, 3)', () => {
+    it('array 의 3번째 인덱스가 삭제되고 후행 값으로 교체된다.', () => {
+      const array = range(5)
+      const removeIndex = 3;
+      const nextIndexValue = array[removeIndex + 1]
+      remove(array, removeIndex)
+      expect(array[removeIndex]).toBe(nextIndexValue)
+    })
 
-
+  });
 });
