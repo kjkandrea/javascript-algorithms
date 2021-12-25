@@ -15,6 +15,7 @@ export class SinglyLinkedList {
   find(value) {
     let curNode = this.head;
     while(curNode.value !== value) {
+      if (curNode.next === null) return null;
       curNode = curNode.next;
     }
     return curNode;
