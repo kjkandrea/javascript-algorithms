@@ -11,6 +11,16 @@ export class SinglyLinkedList {
     this.tail = null
   }
 
+  // O(n)
+  find(value) {
+    let curNode = this.head;
+    while(curNode.value !== value) {
+      curNode = curNode.next;
+    }
+    return curNode;
+  }
+
+  // O(1)
   append(value) {
     const node = new Node(value)
     if (this.head === null) {
@@ -22,6 +32,7 @@ export class SinglyLinkedList {
     }
   }
 
+  // O(n)
   toArray() {
     const array = [];
     let curNode = this.head;
