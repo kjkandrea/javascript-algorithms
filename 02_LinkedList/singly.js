@@ -10,6 +10,6 @@ linkedList.append('🍌')
 linkedList.append('🍎')
 const bananaNode = linkedList.find('🍌');
 linkedList.insert(bananaNode, '🍇')
+linkedList.remove('🍌')
 const array = linkedList.toArray()
 console.log(array)
-linkedList.remove('123')

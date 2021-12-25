@@ -42,7 +42,8 @@ export class SinglyLinkedList {
 
   remove(value) {
     const node = this.find(value)
-    console.log(node)
+    if (node === null) return;
+    node.next = node.next.next
   }
 
   // O(n)
