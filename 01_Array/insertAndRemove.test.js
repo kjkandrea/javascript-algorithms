@@ -37,6 +37,14 @@ describe('insert', () => {
 })
 
 describe('remove', () => {
+  const TEST_removeLengthCheck = removeIndex => it(
+    'result.length 는 array.length - 1 이다.', () => {
+      const array = range(5)
+      const beforeLength = array.length
+      remove(array, removeIndex)
+      expect(array.length).toBe(beforeLength - 1)
+    })
+
   describe('remove(array, 3)', () => {
     it('array 의 3번째 인덱스가 삭제되고 후행 값으로 교체된다.', () => {
       const array = range(5)
@@ -46,5 +54,6 @@ describe('remove', () => {
       expect(array[removeIndex]).toBe(nextIndexValue)
     })
 
+    TEST_removeLengthCheck(3)
   });
 });
