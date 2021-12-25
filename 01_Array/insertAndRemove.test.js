@@ -1,8 +1,8 @@
 import range from '../helper/range'
-import { insert } from './insertAndDelete'
+import { insert } from './insertAndRemove'
 
 describe('insertAndDelete', () => {
-  const TEST_lengthCheck = (insertIndex, payload) => it('result.length 는 array.length + 1 이다.', () => {
+  const TEST_insertLengthCheck = (insertIndex, payload) => it('result.length 는 array.length + 1 이다.', () => {
     const array = range(5)
     const beforeLength = array.length
     insert(array, insertIndex, payload)
@@ -16,13 +16,13 @@ describe('insertAndDelete', () => {
         expect(array[3]).toBe('🐈')
     })
 
-    TEST_lengthCheck(3, '🐈')
+    TEST_insertLengthCheck(3, '🐈')
   })
 
   describe('insert(array, 100, "🐈")', () => {
     describe('2번째 인자(insertIndex) 가 배열의 총 길이보다 크면', () => {
       describe('array.push 를 수행한다.', () => {
-        TEST_lengthCheck(100, '🐈')
+        TEST_insertLengthCheck(100, '🐈')
 
         it('array[array.length]은 "🐈" 이다.', () => {
           const array = range(5)
