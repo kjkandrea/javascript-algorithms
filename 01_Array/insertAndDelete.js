@@ -5,5 +5,5 @@ export function insert (array, insertIndex, payload) {
     array[i] = nextValue;
     nextValue = temp;
   }
-  return array
+  array.push(nextValue)
 }
