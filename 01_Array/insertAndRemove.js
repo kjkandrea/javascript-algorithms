@@ -1,3 +1,4 @@
+// O(n) or O(1)
 export function insert (array, insertIndex, payload) {
   let nextValue = payload;
 
@@ -10,6 +11,7 @@ export function insert (array, insertIndex, payload) {
   array.push(nextValue)
 }
 
+// O(n) or O(1)
 export function remove (array, removeIndex) {
   for (let i = removeIndex; i < array.length; i++ ) {
     array[i] = array[i + 1]
