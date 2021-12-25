@@ -22,7 +22,13 @@ export class SinglyLinkedList {
     }
   }
 
-  display() {
-    console.log(this)
+  toArray() {
+    const array = [];
+    let curNode = this.head;
+    while (curNode !== null) {
+      array.push(curNode.value)
+      curNode = curNode.next;
+    }
+    return array;
   }
 }
