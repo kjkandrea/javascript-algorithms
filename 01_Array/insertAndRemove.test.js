@@ -1,19 +1,20 @@
 import range from '../helper/range'
 import { insert } from './insertAndRemove'
 
-describe('insertAndDelete', () => {
-  const TEST_insertLengthCheck = (insertIndex, payload) => it('result.length 는 array.length + 1 이다.', () => {
-    const array = range(5)
-    const beforeLength = array.length
-    insert(array, insertIndex, payload)
-    expect(array.length).toBe(beforeLength + 1)
-  })
+describe('insert', () => {
+  const TEST_insertLengthCheck = (insertIndex, payload) => it(
+    'result.length 는 array.length + 1 이다.', () => {
+      const array = range(5)
+      const beforeLength = array.length
+      insert(array, insertIndex, payload)
+      expect(array.length).toBe(beforeLength + 1)
+    })
 
   describe('insert(array, 3, "🐈")', () => {
     it('array 의 3번째 인덱스에 🐈 가 추가된다.', () => {
-        const array = range(5)
-        insert(array, 3, '🐈')
-        expect(array[3]).toBe('🐈')
+      const array = range(5)
+      insert(array, 3, '🐈')
+      expect(array[3]).toBe('🐈')
     })
 
     TEST_insertLengthCheck(3, '🐈')
@@ -30,7 +31,12 @@ describe('insertAndDelete', () => {
           insert(array, 100, '🐈')
           expect(array[beforeLength]).toBe('🐈')
         })
-      });
+      })
     })
   })
 })
+
+describe('remove', () => {
+
+
+});
