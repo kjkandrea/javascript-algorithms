@@ -56,4 +56,19 @@ describe('remove', () => {
 
     TEST_removeLengthCheck(3)
   });
+
+  describe('remove(array, 100)', () => {
+    describe('2번째 인자(removeIndex) 가 배열의 총 길이보다 크면', () => {
+      describe('array.pop 를 수행한다.', () => {
+        TEST_removeLengthCheck(100)
+
+        it('array[array.length]은 undefined 이다.', () => {
+          const array = range(5)
+          const beforeLength = array.length
+          remove(array, 100, )
+          expect(array[beforeLength]).toBe(undefined)
+        })
+      });
+    });
+  });
 });
