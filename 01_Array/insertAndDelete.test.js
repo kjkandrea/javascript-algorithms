@@ -6,7 +6,6 @@ describe('insertAndDelete', () => {
     const array = range(5)
     const beforeLength = array.length
     insert(array, insertIndex, payload)
-    if( insertIndex === 100) console.log(array)
     expect(array.length).toBe(beforeLength + 1)
   })
 
@@ -24,6 +23,13 @@ describe('insertAndDelete', () => {
     describe('2번째 인자(insertIndex) 가 배열의 총 길이보다 크면', () => {
       describe('array.push 를 수행한다.', () => {
         TEST_lengthCheck(100, '🐈')
+
+        it('array[array.length]은 "🐈" 이다.', () => {
+          const array = range(5)
+          const beforeLength = array.length
+          insert(array, 100, '🐈')
+          expect(array[beforeLength]).toBe('🐈')
+        })
       });
     })
   })
