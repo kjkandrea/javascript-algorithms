@@ -21,4 +21,8 @@ export class SinglyLinkedList {
       this.tail = node
     }
   }
+
+  display() {
+    console.log(this)
+  }
 }

@@ -7,5 +7,5 @@ console.log(node)
 const linkedList = new SinglyLinkedList()
 linkedList.append('🍰')
 linkedList.append('🍌')
-
-console.log(linkedList)
+linkedList.append('🍎')
+linkedList.display()
