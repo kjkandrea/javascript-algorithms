@@ -1,9 +1,12 @@
 import users from './fixtures/users.js'
 
 const userHashTable = {}
-for (const user of users) {
-  userHashTable[user.name] === undefined
-    ? userHashTable[user.name] = [user]
-    : userHashTable[user.name].push(user)
+for (const { name, id, age } of users) {
+  userHashTable[name] === undefined
+    ? userHashTable[name] = [{ id, age }]
+    : userHashTable[name].push({ id, age})
 }
-console.log(userHashTable)
+
+console.log(
+  userHashTable
+)
