@@ -1,8 +1,8 @@
 class Queue {
   constructor () {
     this.queue = []
-    this.front = null
-    this.rear = null
+    this.front = 0
+    this.rear = 0
   }
 
   enqueue(value) {
@@ -16,3 +16,12 @@ class Queue {
     return value;
   }
 }
+
+const queue = new Queue();
+queue.enqueue(1)
+queue.enqueue(2)
+queue.enqueue(3)
+console.log(queue.queue)
+
+console.log(queue.dequeue())
+console.log(queue.queue)
