@@ -1,6 +1,5 @@
-const graph = Array.from(
-  Array(5),
-  () => Array(5).fill(false)
-)
+const graph = Array(5).fill(Array(5).fill(false))
 
 console.log(graph)
+
+// graph[0][1] = true;
