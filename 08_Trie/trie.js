@@ -20,6 +20,8 @@ class Trie {
           new Node(currentNode.value + char)
         )
       }
+
+      currentNode = currentNode.children.get(char)
     }
   }
 }
