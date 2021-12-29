@@ -11,9 +11,14 @@ class Trie {
   }
 
   insert(string) {
+    let currentNode = this.root;
 
+    for (const char of string) {
+      console.log(currentNode.children.has(char))
+    }
   }
 }
 
 const trie = new Trie()
+trie.insert('cat')
 console.log(trie)
