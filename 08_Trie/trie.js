@@ -14,7 +14,12 @@ class Trie {
     let currentNode = this.root;
 
     for (const char of string) {
-      console.log(currentNode.children.has(char))
+      if (!currentNode.children.has(char)) {
+        currentNode.children.set(
+          char,
+          new Node(currentNode.value + char)
+        )
+      }
     }
   }
 }
