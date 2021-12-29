@@ -25,7 +25,7 @@ class Trie {
   }
 
   has(string) {
-    let currentNode = this. root;
+    let currentNode = this.root;
     for (const char of string) {
       if (!currentNode.children.has(char)) {
         return false;
