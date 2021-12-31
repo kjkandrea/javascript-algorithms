@@ -19,11 +19,16 @@ class BinarySearchTree {
     }
 
     let currentNode = this.root;
-    console.log(currentNode)
+    if (currentNode.value < value) {
+      currentNode.right = node
+    } else {
+      currentNode.left = node
+    }
   }
 }
 
 const tree = new BinarySearchTree()
 tree.insert(5)
 tree.insert(4)
+tree.insert(6)
 console.log(tree)
