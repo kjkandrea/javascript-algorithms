@@ -37,6 +37,16 @@ class BinarySearchTree {
       }
     }
   }
+
+  has(value) {
+    let currentNode = this.root
+    while (currentNode !== null) {
+      if (currentNode.value === value) return true;
+
+      currentNode = currentNode.value < value ? currentNode.right : currentNode.left;
+    }
+    return false;
+  }
 }
 
 const tree = new BinarySearchTree()
@@ -45,4 +55,6 @@ tree.insert(4)
 tree.insert(6)
 tree.insert(7)
 tree.insert(3)
-console.log(JSON.stringify(tree))
+console.log(tree.has(5))
+console.log(tree.has(7))
+console.log(tree.has(999))
