@@ -4,6 +4,7 @@ console.log(
   mergeSort(list)
 )
 
+// TODO: 홀수인 경우 undefined 가 나오네
 function mergeSort(list) {
   if (list.length > 2) {
     list = [
