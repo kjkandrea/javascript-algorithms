@@ -1,12 +1,11 @@
-const list = [6,5,3,1,8,7,2,4];
+const list = [6,5,3,1,8,7,2];
 
 console.log(
   mergeSort(list)
 )
 
 function mergeSort(list) {
-  if (list.length > 3) {
-    // [ [ [ 5, 6 ], [ 1, 3 ] ], [ [ 7, 8 ], [ 2, 4 ] ] ]
+  if (list.length > 2) {
     list = [
        mergeSort(list.slice(0, list.length/2)),
        mergeSort(list.slice(list.length/2))
@@ -16,7 +15,7 @@ function mergeSort(list) {
   const left = list[0]
   const right = list[1]
 
-  if (Array.isArray(left) && Array.isArray(right)) {
+  if (Array.isArray(left) || Array.isArray(right)) {
     return merge(left, right)
   }
 
