@@ -19,11 +19,11 @@ class UndirectedGraph {
   }
 
   removeEdge = (vertex1, vertex2) => {
-    if (this.edges[vertex1][vertex2]) {
+    if (this.edges[vertex1]?.[vertex2]) {
       console.log(this.edges[vertex1][vertex2])
       console.log('has edge')
     }
-    if (this.edges[vertex2][vertex1]) { {
+    if (this.edges[vertex2]?.[vertex1]) { {
       console.log(this.edges[vertex2][vertex1])
       console.log('has edge')
     }
@@ -38,5 +38,5 @@ undirectedGraph.addVertex(3)
 undirectedGraph.addEdge(1, 2, 1)
 undirectedGraph.addEdge(2, 3, 1)
 undirectedGraph.addEdge(1, 3, 3)
-undirectedGraph.removeEdge(1, 3)
+undirectedGraph.removeEdge(2, 4)
 console.log(undirectedGraph.edges)
