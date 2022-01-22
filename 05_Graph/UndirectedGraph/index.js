@@ -3,6 +3,10 @@ class UndirectedGraph {
   constructor () {
     this.edges = {}
   }
+
+  addVertex = vertex => {
+    this.edges[vertex] = {}
+  }
 }
 
 const undirectedGraph = new UndirectedGraph()
