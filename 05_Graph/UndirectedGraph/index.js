@@ -15,4 +15,6 @@ class UndirectedGraph {
 }
 
 const undirectedGraph = new UndirectedGraph()
-console.log(undirectedGraph)
+undirectedGraph.addVertex(1)
+undirectedGraph.addVertex(2)
+console.log(undirectedGraph.edges)
