@@ -12,9 +12,15 @@ class UndirectedGraph {
   addVertex = vertex => {
     this.edges[vertex] = {}
   }
+
+  addEdge = (vertex1, vertex2, weight = 0) => {
+    this.edges[vertex1][vertex2] = weight;
+    this.edges[vertex2][vertex1] = weight;
+  }
 }
 
 const undirectedGraph = new UndirectedGraph()
 undirectedGraph.addVertex(1)
 undirectedGraph.addVertex(2)
+undirectedGraph.addEdge(1, 2, 1)
 console.log(undirectedGraph.edges)
