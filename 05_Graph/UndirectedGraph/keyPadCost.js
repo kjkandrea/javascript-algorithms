@@ -27,13 +27,13 @@ keyPadGraph.addEdge(4, 7, 1)
 keyPadGraph.addEdge(5, 8, 1)
 keyPadGraph.addEdge(6, 9, 1)
 
+// TODO: 공부하면서 보강해야함. 어떻게 탐색해야할지 모르겠
 UndirectedGraph.prototype.getCost = function (fromVertex, toVertex) {
   const stack = []
   const visited = {}
   let currentVertex = toVertex;
   let cost = 0;
   stack.push(currentVertex)
-  console.log(stack)
 
   while (stack.length) {
     currentVertex = stack.pop()
