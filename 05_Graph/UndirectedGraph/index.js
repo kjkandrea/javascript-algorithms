@@ -17,6 +17,13 @@ class UndirectedGraph {
     this.edges[vertex1][vertex2] = weight;
     this.edges[vertex2][vertex1] = weight;
   }
+
+  removeEdge = (vertex1, vertex2) => {
+    if (this.edges[vertex1][vertex2]) {
+      console.log(this.edges[vertex1][vertex2])
+      console.log('has edge')
+    }
+  }
 }
 
 const undirectedGraph = new UndirectedGraph()
@@ -25,4 +32,6 @@ undirectedGraph.addVertex(2)
 undirectedGraph.addVertex(3)
 undirectedGraph.addEdge(1, 2, 1)
 undirectedGraph.addEdge(2, 3, 1)
+undirectedGraph.addEdge(1, 3, 3)
+undirectedGraph.removeEdge(1, 3)
 console.log(undirectedGraph.edges)
