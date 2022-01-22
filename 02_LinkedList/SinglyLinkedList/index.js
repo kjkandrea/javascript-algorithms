@@ -26,20 +26,19 @@ class SinglyLinkedList {
   }
 
   remove = value => {
-    let currentNode = this.head;
+    let currentNode = this.head
     if (currentNode.data === value) {
       this.head = currentNode.next
       this.size -= 1
-      return;
+      return
     }
 
     let prevNode = currentNode
     while (currentNode.next) {
       if (currentNode.data === value) {
         // 해당 노드를 건너뛰어 삭제한다.
-        console.log('in')
         prevNode.next = currentNode.next
-        break;
+        break
       }
       prevNode = currentNode
       currentNode = currentNode.next
@@ -54,7 +53,9 @@ class SinglyLinkedList {
   has = value => {
     let currentNode = this.head
     while (true) {
-      if (currentNode === null) return false
+      if (currentNode === null) {
+        return false
+      }
 
       if (currentNode.data === value) {
         return true
@@ -97,5 +98,5 @@ console.log(
   ` size: ${singlyLinkedList.size}`,
   singlyLinkedList.has(1),
   singlyLinkedList.has(2),
-singlyLinkedList.has(3),
+  singlyLinkedList.has(3),
 )
