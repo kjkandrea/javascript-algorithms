@@ -14,8 +14,8 @@ class UndirectedGraph {
   }
 
   addEdge = (vertex1, vertex2, weight = 0) => {
-    this.edges[vertex1][vertex2] = weight;
-    this.edges[vertex2][vertex1] = weight;
+    this.edges[vertex1][vertex2] = weight
+    this.edges[vertex2][vertex1] = weight
   }
 
   removeEdge = (vertex1, vertex2) => {
@@ -26,6 +26,13 @@ class UndirectedGraph {
       delete this.edges[vertex2][vertex1]
     }
   }
+
+  removeVertex = vertex => {
+    Object.keys(this.edges[vertex]).forEach(adjacentVertex => {
+      this.removeEdge(adjacentVertex, vertex)
+    })
+    delete this.edges[vertex]
+  }
 }
 
 const undirectedGraph = new UndirectedGraph()
@@ -35,5 +42,5 @@ undirectedGraph.addVertex(3)
 undirectedGraph.addEdge(1, 2, 1)
 undirectedGraph.addEdge(2, 3, 1)
 undirectedGraph.addEdge(1, 3, 3)
-undirectedGraph.removeEdge(1, 3)
+undirectedGraph.removeVertex(2)
 console.log(undirectedGraph.edges)
