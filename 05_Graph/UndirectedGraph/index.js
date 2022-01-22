@@ -22,5 +22,7 @@ class UndirectedGraph {
 const undirectedGraph = new UndirectedGraph()
 undirectedGraph.addVertex(1)
 undirectedGraph.addVertex(2)
+undirectedGraph.addVertex(3)
 undirectedGraph.addEdge(1, 2, 1)
+undirectedGraph.addEdge(2, 3, 1)
 console.log(undirectedGraph.edges)
