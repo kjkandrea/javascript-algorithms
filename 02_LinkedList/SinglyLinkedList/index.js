@@ -25,6 +25,14 @@ class SinglyLinkedList {
     this.size += 1
   }
 
+  remove = value => {
+    let currentNode = this.head;
+    if (currentNode.data === value) {
+      this.head = currentNode.next
+      this.size -= 1
+    }
+  }
+
   isEmpty = () => this.size === 0
 
   // 이건 내맘대로 만듬
@@ -50,6 +58,7 @@ const singlyLinkedList = new SinglyLinkedList()
 singlyLinkedList.insert(1)
 singlyLinkedList.insert(2)
 singlyLinkedList.insert(3)
+singlyLinkedList.remove(3)
 
 console.log(
   singlyLinkedList.print(),
