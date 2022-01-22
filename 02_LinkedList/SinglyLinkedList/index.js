@@ -48,6 +48,7 @@ class SinglyLinkedList {
     if (currentNode.data === value) {
       prevNode.next = null
     }
+    this.size -= 1
   }
 
   isEmpty = () => this.size === 0
