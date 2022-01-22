@@ -28,22 +28,20 @@ class SinglyLinkedList {
 
   // 이건 내맘대로 만듬
   print = () => {
-    const reverseList = []
     if (!this.head.data) {
       return ''
     }
 
+    const reverseList = []
     reverseList.push(this.head.data)
-
     let nextNode = this.head.next
     while (true) {
-      if (nextNode !== null) {
-        reverseList.push(nextNode.data)
-        nextNode = nextNode.next
-      } else {
-        console.log('tick')
+      if (nextNode === null) {
         return reverseList.reverse().join(' => ')
       }
+      reverseList.push(nextNode.data)
+      nextNode = nextNode.next
+
     }
   }
 }
