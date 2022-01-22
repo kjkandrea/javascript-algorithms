@@ -37,4 +37,4 @@ directedGraph.addEdge(3, 4, 15)
 directedGraph.removeEdge(3, 4)
 directedGraph.removeVertex(3)
 
-console.log(directedGraph.edges)
+// console.log(directedGraph.edges)

@@ -3,14 +3,18 @@ import { DirectedGraph } from '../DirectedGraph/index.js'
 class BFSDirectedGraph extends DirectedGraph {
   traversBFS = (vertex, fn) => {
     const queue = []
-    const visited = []
+    const visited = {}
 
     queue.push(vertex)
-
-    while(queue.length) {
+    while (queue.length) {
       vertex = queue.shift()
-      if (visited[vertex]) {
+      if (!visited[vertex]) {
         visited[vertex] = true
+        fn(vertex)
+        this.edges?.[vertex] &&
+        Object.keys(this.edges[vertex]).forEach(adjacentVertex => {
+          queue.push(adjacentVertex)
+        })
       }
     }
   }
@@ -34,4 +38,6 @@ directedGraph.addEdge('D', 'G', 1)
 directedGraph.addEdge('D', 'F', 1)
 directedGraph.addEdge('G', 'H', 1)
 directedGraph.addEdge('F', 'J', 1)
-console.log(directedGraph.edges)
+const traverses = []
+directedGraph.traversBFS('B', vertex => traverses.push(vertex))
+console.log(traverses)
