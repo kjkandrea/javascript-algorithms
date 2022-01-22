@@ -22,6 +22,7 @@ class SinglyLinkedList {
       this.head = new SinglyLinkedListNode(value)
       this.head.next = temp
     }
+    this.size += 1
   }
 
   isEmpty = () => this.size === 0
@@ -51,5 +52,6 @@ singlyLinkedList.insert(2)
 singlyLinkedList.insert(3)
 
 console.log(
-  singlyLinkedList.print()
+  singlyLinkedList.print(),
+  ` size: ${singlyLinkedList.size}`
 )
