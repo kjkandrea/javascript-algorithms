@@ -23,6 +23,11 @@ class UndirectedGraph {
       console.log(this.edges[vertex1][vertex2])
       console.log('has edge')
     }
+    if (this.edges[vertex2][vertex1]) { {
+      console.log(this.edges[vertex2][vertex1])
+      console.log('has edge')
+    }
+    }
   }
 }
 
