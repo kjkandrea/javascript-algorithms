@@ -1,4 +1,4 @@
-class DirectedGraph {
+export class DirectedGraph {
   constructor () {
     this.edges = {}
   }
