@@ -44,6 +44,10 @@ class SinglyLinkedList {
       prevNode = currentNode
       currentNode = currentNode.next
     }
+    // 루프 다돌았는데 못찾음. 꼬리에 있을 경우
+    if (currentNode.data === value) {
+      prevNode.next = null
+    }
   }
 
   isEmpty = () => this.size === 0
@@ -71,7 +75,7 @@ const singlyLinkedList = new SinglyLinkedList()
 singlyLinkedList.insert(1)
 singlyLinkedList.insert(2)
 singlyLinkedList.insert(3)
-singlyLinkedList.remove(3)
+singlyLinkedList.remove(1)
 
 console.log(
   singlyLinkedList.print(),
