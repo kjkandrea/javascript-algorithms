@@ -40,3 +40,4 @@ directedGraph.addEdge('F', 'J', 1)
 const traverses = []
 directedGraph.traversBFS('B', vertex => traverses.push(vertex))
 console.log(traverses)
+console.log(directedGraph.edges)

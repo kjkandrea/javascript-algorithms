@@ -4,7 +4,7 @@
  * @Vertex : 정점. 그래프를 형성하는 노드이다.
  * @Edge : 간선. 노드간의 연결을 의미한다.
  */
-class UndirectedGraph {
+export class UndirectedGraph {
   constructor () {
     this.edges = {}
   }
@@ -35,12 +35,12 @@ class UndirectedGraph {
   }
 }
 
-const undirectedGraph = new UndirectedGraph()
-undirectedGraph.addVertex(1)
-undirectedGraph.addVertex(2)
-undirectedGraph.addVertex(3)
-undirectedGraph.addEdge(1, 2, 1)
-undirectedGraph.addEdge(2, 3, 1)
-undirectedGraph.addEdge(1, 3, 3)
-undirectedGraph.removeVertex(2)
-console.log(undirectedGraph.edges)
+// const undirectedGraph = new UndirectedGraph()
+// undirectedGraph.addVertex(1)
+// undirectedGraph.addVertex(2)
+// undirectedGraph.addVertex(3)
+// undirectedGraph.addEdge(1, 2, 1)
+// undirectedGraph.addEdge(2, 3, 1)
+// undirectedGraph.addEdge(1, 3, 3)
+// undirectedGraph.removeVertex(2)
+// console.log(undirectedGraph.edges)
