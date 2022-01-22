@@ -2,10 +2,9 @@ import { DirectedGraph } from '../DirectedGraph/index.js'
 
 class BFSDirectedGraph extends DirectedGraph {
   traversBFS = (vertex, fn) => {
-    const queue = []
-    const visited = {}
+    const queue = [vertex]
 
-    queue.push(vertex)
+    const visited = {}
     while (queue.length) {
       vertex = queue.shift()
       if (!visited[vertex]) {
