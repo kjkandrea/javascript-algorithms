@@ -41,7 +41,6 @@ class SinglyLinkedList {
       }
       reverseList.push(nextNode.data)
       nextNode = nextNode.next
-
     }
   }
 }
