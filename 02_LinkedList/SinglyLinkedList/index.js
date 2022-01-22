@@ -30,6 +30,19 @@ class SinglyLinkedList {
     if (currentNode.data === value) {
       this.head = currentNode.next
       this.size -= 1
+      return;
+    }
+
+    let prevNode = currentNode
+    while (currentNode.next) {
+      if (currentNode.data === value) {
+        // 해당 노드를 건너뛰어 삭제한다.
+        console.log('in')
+        prevNode.next = currentNode.next
+        break;
+      }
+      prevNode = currentNode
+      currentNode = currentNode.next
     }
   }
 
@@ -58,9 +71,10 @@ const singlyLinkedList = new SinglyLinkedList()
 singlyLinkedList.insert(1)
 singlyLinkedList.insert(2)
 singlyLinkedList.insert(3)
-singlyLinkedList.remove(3)
+singlyLinkedList.remove(2)
 
 console.log(
   singlyLinkedList.print(),
-  ` size: ${singlyLinkedList.size}`
+  ` size: ${singlyLinkedList.size}`,
+  singlyLinkedList.head.next
 )
