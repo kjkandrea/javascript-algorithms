@@ -37,7 +37,4 @@ directedGraph.addEdge('D', 'G', 1)
 directedGraph.addEdge('D', 'F', 1)
 directedGraph.addEdge('G', 'H', 1)
 directedGraph.addEdge('F', 'J', 1)
-const traverses = []
-directedGraph.traversBFS('B', vertex => traverses.push(vertex))
-console.log(traverses)
-console.log(directedGraph.edges)
+directedGraph.traversBFS('B', console.log)
