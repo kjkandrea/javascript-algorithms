@@ -2,15 +2,15 @@ import { DirectedGraph } from '../DirectedGraph/index.js'
 
 class BFSDirectedGraph extends DirectedGraph {
   traversDFS = (vertex, fn) => {
-    BFSDirectedGraph._traverseDFS(vertex, {}, fn)
+    this._traverseDFS(vertex, {}, fn)
   }
 
-  static _traverseDFS = (vertex, visited, fn) => {
+  _traverseDFS = (vertex, visited, fn) => {
     visited[vertex] = true
     fn(vertex)
     this.edges?.[vertex] && Object.keys(this.edges[vertex]).forEach(adjacentVertex => {
       if (!visited[adjacentVertex]) {
-        BFSDirectedGraph._traverseDFS(adjacentVertex, visited, fn)
+        this._traverseDFS(adjacentVertex, visited, fn)
       }
     })
   }
