@@ -8,6 +8,7 @@ class BFSDirectedGraph extends DirectedGraph {
   _traverseDFS = (vertex, visited, fn) => {
     visited[vertex] = true
     fn(vertex)
+    // vertex 깊이 탐색이 끝나면 다음 adjacentVertex 기준으로 이웃 vertex 탐색
     this.edges?.[vertex] && Object.keys(this.edges[vertex]).forEach(adjacentVertex => {
       if (!visited[adjacentVertex]) {
         this._traverseDFS(adjacentVertex, visited, fn)
@@ -34,4 +35,4 @@ directedGraph.addEdge('D', 'G', 1)
 directedGraph.addEdge('D', 'F', 1)
 directedGraph.addEdge('G', 'H', 1)
 directedGraph.addEdge('F', 'J', 1)
-directedGraph.traversDFS('A', console.log)
+directedGraph.traversDFS('B', console.log)
