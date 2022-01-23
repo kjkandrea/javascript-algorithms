@@ -2,7 +2,12 @@ import { DirectedGraph } from '../DirectedGraph/index.js'
 
 class BFSDirectedGraph extends DirectedGraph {
   traversDFS = (vertex, fn) => {
-    fn(vertex)
+    const visited = {}
+
+    BFSDirectedGraph._traverseDFS(vertex)
+  }
+  static _traverseDFS = vertex => {
+    console.log('_traverseDFS')
   }
 }
 
