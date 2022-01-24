@@ -21,14 +21,12 @@ class DijkstraDirectedGraph extends DirectedGraph {
   dijkstra = start => {
     const queue = {...this.edges}
     const dist = {}
-    this.edges && Object.keys(this.edges).forEach(vertex => {
-      // 모르는 거리는 무한으로 설정
+    Object.keys(this.edges).forEach(vertex => {
+      // 목적지의 모든 값 Infinity 로 초기화
       dist[vertex] = Infinity
     })
 
-    console.log(queue)
-
-    dist[start] = 0;
+    dist[start] = 0; // 시작점 => 시작점은 0 이므로
 
     while (!DijkstraDirectedGraph.isEmpty(queue)) {
       const u = DijkstraDirectedGraph.extractMin(queue, dist); // get the min distance
