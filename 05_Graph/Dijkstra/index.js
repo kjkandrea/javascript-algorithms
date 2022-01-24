@@ -4,6 +4,8 @@
 import { DirectedGraph } from '../DirectedGraph/index.js'
 
 class DijkstraDirectedGraph extends DirectedGraph {
+  static _isEmpty = object => Object.keys(object).length === 0;
+
   dijkstra = source => {
     const Q = {}
     const dist = {}
@@ -15,7 +17,13 @@ class DijkstraDirectedGraph extends DirectedGraph {
 
     dist[source] = 0;
 
-    console.log(Q)
+    while (!DijkstraDirectedGraph._isEmpty(Q)) {
+      const u = Object.keys(Q)[0]
+
+      console.log(u)
+
+      delete Q[u]
+    }
   }
 }
 
@@ -35,5 +43,4 @@ graph.addEdge('C', 'E', 10)
 graph.addEdge('D', 'E', 2)
 graph.addEdge('D', 'Z', 2)
 graph.addEdge('E', 'Z', 2)
-console.log(graph.edges)
-console.log(graph.dijkstra('Z'))
+graph.dijkstra('Z')
