@@ -1,3 +1,4 @@
+// TODO: 이해못했음
 const extractMin = (queue, dist) => {
   let minimumDist = Infinity
   let nodeWithMinimumDist = null

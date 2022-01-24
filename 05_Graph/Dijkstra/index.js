@@ -6,6 +6,7 @@ import { DirectedGraph } from '../DirectedGraph/index.js'
 class DijkstraDirectedGraph extends DirectedGraph {
   static isEmpty = object => Object.keys(object).length === 0;
 
+  // TODO: 이해못했음
   static extractMin = (queue, dist) => {
     let minimumDist = Infinity
     let nodeWithMinimumDist = null
@@ -34,6 +35,7 @@ class DijkstraDirectedGraph extends DirectedGraph {
 
       delete queue[u];
 
+      // TODO: 이해못했음
       Object.keys(this.edges[u]).forEach(neighbor => {
         let alt = dist[u] + this.edges[u][neighbor]
         if (alt < dist[neighbor]) {
