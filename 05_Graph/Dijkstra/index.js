@@ -1,14 +1,18 @@
-// 최단경로 알고리즘 : Dijkstra Algorithm
+// 최단거리 알고리즘 : Dijkstra Algorithm
+// TODO: 그럼 최단경로는 어떻게구하냐??
 
 import { DirectedGraph } from '../DirectedGraph/index.js'
 
 class DijkstraDirectedGraph extends DirectedGraph {
-  dijkstra = () => {
+  dijkstra = source => {
     const dist = {}
 
     this.edges && Object.keys(this.edges).forEach(vertex => {
       dist[vertex] = Infinity
     })
+
+    dist[source] = 0;
+
     console.log(dist)
   }
 }
