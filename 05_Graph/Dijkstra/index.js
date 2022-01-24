@@ -5,15 +5,17 @@ import { DirectedGraph } from '../DirectedGraph/index.js'
 
 class DijkstraDirectedGraph extends DirectedGraph {
   dijkstra = source => {
+    const Q = {}
     const dist = {}
 
     this.edges && Object.keys(this.edges).forEach(vertex => {
       dist[vertex] = Infinity
+      Q[vertex] = this.edges[vertex]
     })
 
     dist[source] = 0;
 
-    console.log(dist)
+    console.log(Q)
   }
 }
 
@@ -34,4 +36,4 @@ graph.addEdge('D', 'E', 2)
 graph.addEdge('D', 'Z', 2)
 graph.addEdge('E', 'Z', 2)
 console.log(graph.edges)
-console.log(graph.dijkstra())
+console.log(graph.dijkstra('Z'))
