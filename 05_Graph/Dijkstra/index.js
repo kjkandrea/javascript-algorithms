@@ -19,19 +19,21 @@ class DijkstraDirectedGraph extends DirectedGraph {
   }
 
   dijkstra = start => {
-    const Q = {}
+    const queue = {...this.edges}
     const dist = {}
     this.edges && Object.keys(this.edges).forEach(vertex => {
+      // 모르는 거리는 무한으로 설정
       dist[vertex] = Infinity
-      Q[vertex] = this.edges[vertex]
     })
+
+    console.log(queue)
 
     dist[start] = 0;
 
-    while (!DijkstraDirectedGraph.isEmpty(Q)) {
-      const u = DijkstraDirectedGraph.extractMin(Q, dist); // get the min distance
+    while (!DijkstraDirectedGraph.isEmpty(queue)) {
+      const u = DijkstraDirectedGraph.extractMin(queue, dist); // get the min distance
 
-      delete Q[u];
+      delete queue[u];
 
       Object.keys(this.edges[u]).forEach(neighbor => {
         let alt = dist[u] + this.edges[u][neighbor]
