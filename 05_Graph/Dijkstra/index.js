@@ -6,10 +6,10 @@ import { DirectedGraph } from '../DirectedGraph/index.js'
 class DijkstraDirectedGraph extends DirectedGraph {
   static isEmpty = object => Object.keys(object).length === 0;
 
-  static extractMin = (Q, dist) => {
+  static extractMin = (queue, dist) => {
     let minimumDist = Infinity
     let nodeWithMinimumDist = null
-    Object.keys(Q).forEach(node => {
+    Object.keys(queue).forEach(node => {
       if (dist[node] <= minimumDist) {
         minimumDist = dist[node]
         nodeWithMinimumDist = node;
@@ -28,6 +28,7 @@ class DijkstraDirectedGraph extends DirectedGraph {
 
     dist[start] = 0; // 시작점 => 시작점은 0 이므로
 
+    // 큐가 빌 때까지 실행
     while (!DijkstraDirectedGraph.isEmpty(queue)) {
       const u = DijkstraDirectedGraph.extractMin(queue, dist); // get the min distance
 
