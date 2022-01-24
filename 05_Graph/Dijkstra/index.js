@@ -18,7 +18,7 @@ class DijkstraDirectedGraph extends DirectedGraph {
     return nodeWithMinimumDist;
   }
 
-  dijkstra = source => {
+  dijkstra = start => {
     const Q = {}
     const dist = {}
     this.edges && Object.keys(this.edges).forEach(vertex => {
@@ -26,7 +26,7 @@ class DijkstraDirectedGraph extends DirectedGraph {
       Q[vertex] = this.edges[vertex]
     })
 
-    dist[source] = 0;
+    dist[start] = 0;
 
     while (!DijkstraDirectedGraph.isEmpty(Q)) {
       const u = DijkstraDirectedGraph.extractMin(Q, dist); // get the min distance
@@ -60,4 +60,4 @@ graph.addEdge('C', 'E', 10)
 graph.addEdge('D', 'E', 2)
 graph.addEdge('D', 'Z', 2)
 graph.addEdge('E', 'Z', 3)
-console.log(graph.dijkstra('A'))
+console.log(graph.dijkstra('A')) // 출발점을 인자로
