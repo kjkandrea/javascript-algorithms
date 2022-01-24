@@ -4,7 +4,19 @@
 import { DirectedGraph } from '../DirectedGraph/index.js'
 
 class DijkstraDirectedGraph extends DirectedGraph {
-  static _isEmpty = object => Object.keys(object).length === 0;
+  static isEmpty = object => Object.keys(object).length === 0;
+
+  static extractMin = (Q, dist) => {
+    let minimumDist = Infinity
+    let nodeWithMinimumDist = null
+    Object.keys(dist).forEach(node => {
+      if (dist[node] <= minimumDist) {
+        minimumDist = dist[node]
+        nodeWithMinimumDist = node;
+      }
+    })
+    return nodeWithMinimumDist;
+  }
 
   dijkstra = source => {
     const Q = {}
