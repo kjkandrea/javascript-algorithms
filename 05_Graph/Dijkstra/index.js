@@ -9,7 +9,7 @@ class DijkstraDirectedGraph extends DirectedGraph {
   static extractMin = (Q, dist) => {
     let minimumDist = Infinity
     let nodeWithMinimumDist = null
-    Object.keys(dist).forEach(node => {
+    Object.keys(Q).forEach(node => {
       if (dist[node] <= minimumDist) {
         minimumDist = dist[node]
         nodeWithMinimumDist = node;
@@ -21,7 +21,6 @@ class DijkstraDirectedGraph extends DirectedGraph {
   dijkstra = source => {
     const Q = {}
     const dist = {}
-
     this.edges && Object.keys(this.edges).forEach(vertex => {
       dist[vertex] = Infinity
       Q[vertex] = this.edges[vertex]
@@ -29,13 +28,19 @@ class DijkstraDirectedGraph extends DirectedGraph {
 
     dist[source] = 0;
 
-    while (!DijkstraDirectedGraph._isEmpty(Q)) {
-      const u = Object.keys(Q)[0]
+    while (!DijkstraDirectedGraph.isEmpty(Q)) {
+      const u = DijkstraDirectedGraph.extractMin(Q, dist); // get the min distance
 
-      console.log(u)
+      delete Q[u];
 
-      delete Q[u]
+      Object.keys(this.edges[u]).forEach(neighbor => {
+        let alt = dist[u] + this.edges[u][neighbor]
+        if (alt < dist[neighbor]) {
+          dist[neighbor] = alt;
+        }
+      })
     }
+    return dist;
   }
 }
 
@@ -54,5 +59,5 @@ graph.addEdge('C', 'D', 8)
 graph.addEdge('C', 'E', 10)
 graph.addEdge('D', 'E', 2)
 graph.addEdge('D', 'Z', 2)
-graph.addEdge('E', 'Z', 2)
-graph.dijkstra('Z')
+graph.addEdge('E', 'Z', 3)
+console.log(graph.dijkstra('A'))
