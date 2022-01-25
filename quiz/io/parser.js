@@ -1,4 +1,2 @@
 import fs from 'fs';
-const input = fs.readFileSync('./input.txt').toString().split('\n');
-
-console.log(input)
+export const parse = path => fs.readFileSync(path).toString().split('\n');
