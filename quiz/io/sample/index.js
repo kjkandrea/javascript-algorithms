@@ -10,7 +10,7 @@ const args = [Number(left), right.split(' ').map(Number)]
  * 첫째 줄에 주어진 정수 N개의 최솟값과 최댓값을 공백으로 구분해 출력한다.
  */
 function solution(length, numbers) {
-  return numbers;
+  return Math.min(...numbers) + ' ' + Math.max(...numbers);
 }
 
 console.log(solution(...args))
