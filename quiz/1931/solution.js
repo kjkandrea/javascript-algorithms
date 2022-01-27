@@ -6,6 +6,7 @@ const meetingTimes = lines.map(line => {
   return [Number(end), Number(start)]
 })
 
+// TODO: fail
 function solution (meetingTimes) {
   meetingTimes = meetingTimes.sort(([a], [b]) => a - b);
   let total = 0;
@@ -17,10 +18,12 @@ function solution (meetingTimes) {
       continue;
     }
 
-    // 여기서 가능한 시간 추려서 total 낼 예정!
-    console.log(times)
+    if (used[0] <= times[1]) {
+      total += 1;
+      used[0] = times[0]
+    }
   }
-  console.log(meetingTimes)
+  return total
 }
 
 console.log(
