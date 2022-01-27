@@ -6,6 +6,7 @@ const meetingTimes = lines.map(line => {
   return [Number(end), Number(start)]
 })
 
+// Greedy + Sort
 function solution (meetingTimes) {
   meetingTimes = meetingTimes.sort(([e1, b1], [e2, b2]) => e1 !== e2 ? e1 - e2 : b1 - b2);
 

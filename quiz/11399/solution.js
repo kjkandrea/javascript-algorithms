@@ -3,6 +3,7 @@ import fs from 'fs';
 const line = fs.readFileSync('./input.txt', 'utf8').trim().split('\n');
 const peoples = line[1].split(' ').map(Number)
 
+// Greedy
 function solution(peoples) {
   peoples = peoples.sort((a, b)=> a - b)
 
