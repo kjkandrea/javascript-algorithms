@@ -2,13 +2,17 @@ import fs from 'fs';
 
 const bars = fs.readFileSync('./input.txt', 'utf8').trim()
 
-// TODO: fail
 function solution(bars) {
   let stack = 0;
   let count = 0;
 
   const raiserBars = bars.replaceAll('()', '|')
-  return raiserBars;
+  for (const char of raiserBars) {
+    if (char === '(') stack += 1
+    if (char === ')') stack -= 1
+    if (char === '|') count += stack
+  }
+  return count;
 }
 
 console.log(
