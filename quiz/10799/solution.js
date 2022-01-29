@@ -9,7 +9,10 @@ function solution(bars) {
   const raiserBars = bars.replaceAll('()', '|')
   for (const char of raiserBars) {
     if (char === '(') stack += 1
-    if (char === ')') stack -= 1
+    if (char === ')') {
+      stack -= 1
+      count += 1
+    }
     if (char === '|') count += stack
   }
   return count;
