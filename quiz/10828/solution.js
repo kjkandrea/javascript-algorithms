@@ -27,9 +27,16 @@ class Stack {
   }
 }
 
-// Stack. 시간초과남
+// Stack.
 function solution (lines) {
   const stack = new Stack()
+
+  const output = {
+    data: '',
+    set(payload) {
+      this.data += `${payload}\n`
+    }
+  }
 
   lines.forEach(line => {
     const [name, payload] = line.split(' ')
@@ -39,14 +46,18 @@ function solution (lines) {
         stack.push(Number(payload))
         break
       case 'pop':
-        console.log(stack.pop())
+        output.set(stack.pop())
         break
       // Getters
       default:
-        console.log(stack[name])
+        output.set(stack[name])
         break
     }
   })
+
+  return output.data
 }
 
-solution(lines)
+console.log(
+solution(lines).trim()
+)
