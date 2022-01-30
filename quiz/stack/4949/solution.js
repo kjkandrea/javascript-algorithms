@@ -1,13 +1,10 @@
 import fs from 'fs';
 
-const lines = fs.readFileSync('./input.txt', 'utf8').trim().split('\n')
+const lines = fs.readFileSync('./input.txt', 'utf8').split('\n')
 
 function balanceJudgment(line) {
-  const brackets = line.replace(/[^()\[\]]/g, '')
-  if (!brackets) return 'yes'
-
   const stack = []
-  for (const bracket of brackets) {
+  for (const bracket of line) {
     if (bracket === '(' || bracket === '[') {
       stack.push(bracket)
     }
@@ -28,7 +25,7 @@ function balanceJudgment(line) {
     }
   }
 
-  return 'yes'
+  return stack.length === 0 ? 'yes' : 'no'
 
 }
 
