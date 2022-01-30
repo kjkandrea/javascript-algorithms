@@ -14,20 +14,20 @@ class Stack {
     this.stack = []
   }
 
-  push = payload => ['push', payload]
+  push = payload => this.stack.push(payload)
 
-  pop = () => 'pop'
+  pop = () => this.stack.pop() ?? -1
 
   get size () {
-    return 'size'
+    return this.stack.length
   }
 
   get empty () {
-    return 'empty'
+    return 0 >= this.stack.length ? 1 : 0;
   }
 
   get top () {
-    return 'top'
+    return this.stack[this.stack.length - 1] ?? -1
   }
 }
 
@@ -36,12 +36,14 @@ function solution (messages) {
 
   messages.forEach(([name, payload]) => {
     switch (name) {
+      // Methods
       case 'push':
         stack.push(payload)
         break
       case 'pop':
         console.log(stack.pop())
         break
+      // Getters
       default:
         console.log(stack[name])
         break
