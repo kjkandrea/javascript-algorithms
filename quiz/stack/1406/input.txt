@@ -1,5 +1,5 @@
-abcd
-3
+dmih
+11
+B
+B
 P x
-L
-P y

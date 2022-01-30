@@ -10,30 +10,16 @@ const [initialValue] = inputs.splice(0, 2)
  * 2) 임의의 위치에 원소를 삽입하거나 삭제하는 연산을 O(1) 에 수행할 수 있는 자료구조 사용하기
  **/
 function solution(initialValue, inputs) {
-  const stringArray = initialValue.split('')
-  let cursor = stringArray.length - 1
+  const leftStack = initialValue.split('')
+  const rightStack = []
 
   inputs.forEach(input => {
-    if (input.startsWith('P')) {
-      const [_, payload] = input.split(' ')
-      cursor += 1
-      stringArray.splice(cursor, 0, payload)
-      return;
-    }
-
-    if (input.startsWith('B')) {
-      if (stringArray[cursor]) {
-        stringArray.splice(cursor, 1)
-        if (cursor !== -1) cursor -= 1
-      }
-      return;
-    }
-
-    if (input === 'D' && stringArray.length - 1 > cursor) cursor += 1
-    if (input === 'L' && cursor > -1) cursor -= 1
+    const [cmd] = input.split('')
+    if (cmd === 'B') leftStack.pop()
   })
 
-  console.log(stringArray.join(''))
+  console.log(leftStack)
+  console.log(rightStack)
 }
 
 solution(
