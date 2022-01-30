@@ -11,8 +11,8 @@ function solution(initialValue, inputs) {
     const [cmd, payload] = input.split(' ')
     if (cmd === 'B') leftStack.pop()
     if (cmd === 'P') leftStack.push(payload)
-    if (cmd === 'L') rightStack.push(leftStack.pop())
-    if (cmd === 'R') leftStack.push(rightStack.pop())
+    if (cmd === 'L' && leftStack.length) rightStack.push(leftStack.pop())
+    if (cmd === 'D' && rightStack.length) leftStack.push(rightStack.pop())
   })
 
   console.log(leftStack.join('') + rightStack.reverse().join(''))
