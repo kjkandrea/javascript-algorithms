@@ -18,8 +18,8 @@ class Queue {
       this.tail = node
     } else {
       // 순서 중요
-      this.tail.next = node
-      this.tail = node
+      this.tail.next = node // 기존 꼬리의 꼬리를 하나 더 추가하고
+      this.tail = node // 추가된 노드가 꼬리가 된다.
     }
   }
 
@@ -33,9 +33,16 @@ class Queue {
 
 const queue = new Queue()
 queue.enqueue(1)
+
+console.log(queue)
+
 queue.enqueue(2)
+
+console.log(queue)
+
 queue.enqueue(3)
-queue.enqueue(4)
+
+console.log(queue)
 
 console.log(
   queue.dequeue(),
