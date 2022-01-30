@@ -17,6 +17,7 @@ class Queue {
       this.head = node
       this.tail = node
     } else {
+      // 순서 중요
       this.tail.next = node
       this.tail = node
     }
