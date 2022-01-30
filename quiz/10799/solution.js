@@ -2,6 +2,7 @@ import fs from 'fs';
 
 const bars = fs.readFileSync('./input.txt', 'utf8').trim()
 
+// Stack
 function solution(bars) {
   let stack = 0;
   let count = 0;
