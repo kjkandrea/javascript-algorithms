@@ -1,6 +1,6 @@
 class Node {
   constructor (value) {
-    this.value = value
+    this.value  = value
     this.next = null
   }
 }
@@ -34,9 +34,9 @@ const queue = new Queue()
 queue.enqueue(1)
 queue.enqueue(2)
 queue.enqueue(3)
+queue.enqueue(4)
 
 console.log(
-  queue.dequeue(),
   queue.dequeue(),
   queue.dequeue(),
   queue.dequeue(),
