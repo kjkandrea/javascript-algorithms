@@ -4,10 +4,6 @@ const lines = fs.readFileSync('./input.txt', 'utf8').
   trim().
   split('\n').
   splice(1)
-const messages = lines.map(line => {
-  const [left, right] = line.split(' ')
-  return right ? [left, Number(right)] : [left, null]
-})
 
 class Stack {
   constructor () {
@@ -31,14 +27,16 @@ class Stack {
   }
 }
 
-function solution (messages) {
+// Stack. 시간초과남
+function solution (lines) {
   const stack = new Stack()
 
-  messages.forEach(([name, payload]) => {
+  lines.forEach(line => {
+    const [name, payload] = line.split(' ')
     switch (name) {
       // Methods
       case 'push':
-        stack.push(payload)
+        stack.push(Number(payload))
         break
       case 'pop':
         console.log(stack.pop())
@@ -51,4 +49,4 @@ function solution (messages) {
   })
 }
 
-solution(messages)
+solution(lines)
