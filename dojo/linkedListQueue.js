@@ -1,4 +1,3 @@
-// linked list node
 class Node {
   constructor (value) {
     this.value = value
@@ -24,21 +23,21 @@ class Queue {
   }
 
   dequeue() {
+    if (!this.head) return undefined;
     const value = this.head.value
-    this.head = this.head.next;
-    return value;
+    this.head = this.head.next
+    return value
   }
 }
 
-function main () {
-  const queue = new Queue()
-  queue.enqueue(1)
-  queue.enqueue(2)
-  queue.enqueue(3)
-  queue.enqueue(4)
-  console.log(queue.dequeue())
-  console.log(queue.dequeue())
-  console.log(queue)
-}
+const queue = new Queue()
+queue.enqueue(1)
+queue.enqueue(2)
+queue.enqueue(3)
 
-main()
+console.log(
+  queue.dequeue(),
+  queue.dequeue(),
+  queue.dequeue(),
+  queue.dequeue(),
+)
