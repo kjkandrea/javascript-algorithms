@@ -17,3 +17,13 @@ console.log({
   moveCmdLength,
   moveCmd
 })
+
+function generateSquare(n, applePosition) {
+  const square =  Array.from(Array(n), () => Array.from(Array(n), () => 'rd'))
+  for (const [x, y] of applePosition) {
+    square[x][y] = '🍎'
+  }
+  return square;
+}
+
+console.log(generateSquare(square, applePosition))
