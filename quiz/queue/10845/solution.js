@@ -33,6 +33,16 @@ class Queue {
     this.head = this.head.next
     return value;
   }
+
+  get start () {
+    if (!this.head) return -1
+    return this.head.value
+  }
+
+  get end () {
+    if (!this.tail) return -1
+    return this.tail.value
+  }
 }
 
 function execute (queue, command) {
@@ -42,6 +52,10 @@ function execute (queue, command) {
       return queue.enqueue(payload)
     case 'pop':
       return queue.dequeue()
+    case 'front':
+      return queue.start
+    case 'back':
+      return queue.end
   }
 }
 
