@@ -1,23 +1,67 @@
-import fs from "fs"
+import fs from 'fs'
 
 const lines = fs.readFileSync('./input.txt', 'utf8').split('\n')
 lines.shift()
 
-class Queue {
-
+class Node {
+  constructor (value) {
+    this.value = value
+    this.next = null
+  }
 }
 
-function solution(lines) {
+class Queue {
+  constructor () {
+    this.head = null
+    this.tail = null
+  }
+
+  enqueue (value) {
+    const node = new Node(value)
+    if (this.head === null) {
+      this.head = node
+      this.tail = node
+    } else {
+      this.tail.next = node
+      this.tail = node
+    }
+  }
+
+  dequeue () {
+    if (!this.head) return -1
+    const value = this.head.value
+    this.head = this.head.next
+    return value;
+  }
+}
+
+function execute (queue, command) {
+  const { name, payload } = command
+  switch (name) {
+    case 'push':
+      return queue.enqueue(payload)
+    case 'pop':
+      return queue.dequeue()
+  }
+}
+
+function solution (lines) {
   const commands = lines.map(line => {
-    const [cmd, payload] = line.split(' ')
+    const [name, payload] = line.split(' ')
     return {
-      cmd,
-      payload: payload ? Number(payload) : null
+      name,
+      payload: payload ? Number(payload) : null,
     }
   })
 
   const queue = new Queue()
-  console.log(commands)
+
+  const prints = []
+  commands.forEach(command => {
+    const result = execute(queue, command)
+    if (result) prints.push(result)
+  })
+  console.log(prints)
 }
 
 solution(lines)
