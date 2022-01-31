@@ -43,6 +43,10 @@ class Queue {
     if (!this.tail) return -1
     return this.tail.value
   }
+
+  get isEmpty () {
+    return this.head ? 0 : 1
+  }
 }
 
 function execute (queue, command) {
@@ -56,6 +60,8 @@ function execute (queue, command) {
       return queue.start
     case 'back':
       return queue.end
+    case 'empty':
+      return queue.isEmpty
   }
 }
 
