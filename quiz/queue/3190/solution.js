@@ -1,6 +1,6 @@
 import fs from "fs"
 
-const lines = fs.readFileSync('./case2.txt', 'utf8').split('\n')
+const lines = fs.readFileSync('./case3.txt', 'utf8').split('\n')
 const square = Number(lines.shift())
 const appleLength = Number(lines.shift())
 const applePosition = lines.splice(0, appleLength).map(p => p.split(' ').map(Number))
@@ -17,9 +17,86 @@ const moveCommands = lines.map(cmd => {
 //   moveCommands
 // })
 
+class Queue {
+  constructor () {
+    this.head = null
+    this.tail = null
+    this.size = 0;
+  }
+
+  static getNode(value) {
+    return {
+      value,
+      next: null
+    }
+  }
+
+  enqueue(value) {
+    const node = Snake.getNode(value)
+    if (this.head === null) {
+      this.head = node;
+    } else {
+      this.tail.next = node;
+    }
+
+    this.tail = node;
+    this.size += 1;
+  }
+
+  dequeue() {
+    if (!this.head) return undefined;
+    const value = this.head.value
+    this.head = this.head.next
+    this.size -= 1;
+    return value
+  }
+}
+
+class Snake extends Queue {
+  constructor () {
+    super();
+    this.maxLength = 1;
+  }
+
+  move(value) {
+    if (this.maxLength >= 4) {
+        console.log('buffer', this.buffer)
+        console.log('dead : ', value)
+    }
+
+    this.enqueue(value)
+    if (this.size > this.maxLength) {
+      this.dequeue()
+    }
+  }
+
+  get buffer () {
+    const result = [];
+    let currentNode = this.head
+    while(currentNode.next) {
+      result.push(currentNode.value)
+      currentNode = currentNode.next
+    }
+    return result
+  }
+
+  includes(value) {
+    let currentNode = this.head
+    while(currentNode.next) {
+      if (value.toString() === currentNode.value.toString()) {
+        return true;
+      }
+      currentNode = currentNode.next;
+    }
+    return false;
+  }
+}
+
 class Position {
   constructor () {
     this.value = [0, 0]
+    this.snake = new Snake()
+    this.snake.move(this.value)
   }
 
   update(direction) {
@@ -37,10 +114,10 @@ class Position {
         this.value[1] += 1
         break;
     }
+    this.snake.move(this.value)
   }
 }
 
-// TODO: 사과 심는것부터 검증 필요
 class Square {
   constructor (n, applePosition) {
     this.map = Array.from(Array(n), () => Array.from(Array(n), () => null))
@@ -49,7 +126,7 @@ class Square {
 
   setApples(applePosition) {
     for (const [x, y] of applePosition) {
-      this.map[x][y] = '🍎'
+      this.map[x - 1][y - 1] = '🍎'
     }
   }
 
@@ -93,22 +170,31 @@ function solution (n, applePosition, moveCommands) {
   const position = new Position()
   // console.log(square.getItem(...currentPosition))
 
-  let len = 1;
   let time = 0;
   let direction = new Direction('R')
 
-  // moveCommands.splice(0, 1)
   for (const [step, changeDirection] of moveCommands) {
     for (let i = time + 1; i <= step;i +=1) {
       time += 1;
 
+      console.log(position.value)
       position.update(direction.value)
 
+      // dead. wall
       if (square.getItem(...position.value) === undefined) {
-        console.log(position.value)
         return time;
-      } // dead.
-      if (square.getItem(...position.value) === '🍎') len += 1; // level up.
+      }
+
+      // TODO: dead. suicide
+      if (position.snake.maxLength >= 4) {
+        if (position.snake.includes(position.value)) {
+          console.log(position.value)
+          console.log(position.snake)
+          return time;
+        }
+      }
+
+      if (square.getItem(...position.value) === '🍎') position.snake.maxLength += 1; // level up.
     }
 
     changeDirection === 'D'
@@ -116,13 +202,12 @@ function solution (n, applePosition, moveCommands) {
       : direction.left()
   }
 
-  console.log(position.value, direction.value)
-
   while(square.getItem(...position.value) !== undefined) {
     time += 1;
 
     position.update(direction.value)
   }
+
   return time;
 }
 
