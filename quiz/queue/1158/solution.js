@@ -16,7 +16,7 @@ class Circular {
     this.size = 0;
   }
 
-  add (value) {
+  push (value) {
     const node = new Node(value)
     if (this.head === null) {
       this.head = node
@@ -28,20 +28,33 @@ class Circular {
     this.tail.next = this.head
     this.size += 1;
   }
+
+  pop (value) {
+    let node = this.head
+    while(node.value !== value) {
+      node = node.next
+    }
+
+    node.value = node.next.value
+    node.next = node.next.next
+    this.size -= 1;
+
+    return value
+  }
 }
 
 function generateCircular (n) {
   const circular = new Circular()
   for (let i = 1; i <= n;i += 1) {
-    circular.add(i)
+    circular.push(i)
   }
-  console.log(circular)
-  console.log(circular.head.value)
-  console.log(circular.tail.value)
+  return circular
 }
 
 function solution (n, k) {
   const circular = generateCircular(n)
+  console.log(circular.pop(2))
+  console.log(circular)
 }
 
 solution(n, k)
