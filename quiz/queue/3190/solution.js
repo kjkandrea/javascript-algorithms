@@ -18,12 +18,33 @@ console.log({
   moveCmd
 })
 
-function generateSquare(n, applePosition) {
-  const square =  Array.from(Array(n), () => Array.from(Array(n), () => null))
-  for (const [x, y] of applePosition) {
-    square[x][y] = '🍎'
+class Square {
+  constructor (n, applePosition) {
+    this.map = Array.from(Array(n), () => Array.from(Array(n), () => null))
+    this.setApples(applePosition)
   }
-  return square;
+
+  setApples(applePosition) {
+    for (const [x, y] of applePosition) {
+      this.map[x][y] = '🍎'
+    }
+  }
+
+  getItem (y, x) {
+    return this.map[x][y]
+  }
 }
 
-console.log(generateSquare(square, applePosition))
+function generateSquare(n, applePosition) {
+  return new Square(n, applePosition);
+}
+
+function solution (n, applePosition) {
+  const square = generateSquare(n, applePosition)
+  console.log(square)
+  const currentPosition = [5, 2]
+  console.log(square.getItem(...currentPosition))
+  let len = 1;
+}
+
+solution(square, applePosition)
