@@ -31,7 +31,7 @@ class Square {
   }
 
   getItem (y, x) {
-    return this.map[x][y]
+    return this.map?.[x]?.[y]
   }
 }
 
@@ -61,6 +61,10 @@ function generateSquare(n, applePosition) {
   return new Square(n, applePosition);
 }
 
+/**
+ * 1. 그냥 벽에 부딪히는 경우의 수 : 완료
+ * 2. 자기 몸에 부딪히는 경우의 수 : fail
+ */
 function solution (n, applePosition, moveCommands) {
   const square = generateSquare(n, applePosition)
   const currentPosition = [0, 0] // x, y
@@ -68,43 +72,38 @@ function solution (n, applePosition, moveCommands) {
 
   let len = 1;
   let time = 0;
-  let direction = 'R' // 'R'|'L'|'T'|'D'
+  let direction = new Direction('R')
 
   // moveCommands.splice(0, 1)
   for (const [step, changeDirection] of moveCommands) {
     for (let i = 1; i <= step;i +=1) {
       time += 1;
 
-      if (direction === 'R') {
-        currentPosition[0] += 1
-      }
-      if (direction === 'L') {
-        currentPosition[0] -= 1
-      }
-      if (direction === 'T') {
-        currentPosition[1] -= 1
-      }
-      if (direction === 'B') {
-        currentPosition[1] += 1
+      switch (direction.value) {
+        case 'R':
+          currentPosition[0] += 1
+          break;
+        case 'L':
+          currentPosition[0] -= 1
+          break;
+        case 'T':
+          currentPosition[1] -= 1
+          break;
+        case 'B':
+          currentPosition[1] += 1
+          break;
       }
 
       if (square.getItem(...currentPosition) === undefined) return time; // dead.
       if (square.getItem(...currentPosition) === '🍎') len += 1; // level up.
     }
+
+    changeDirection === 'D'
+      ? direction.right()
+      : direction.left()
   }
 }
 
-// console.log(
-// solution(square, applePosition, moveCommands)
-// )
-
-const d = new Direction()
-console.log(d.value) // 'R'
-d.left()
-d.left()
-d.left()
-d.left()
-d.left()
-d.left()
-console.log(d.index)
-console.log(d.value) // 'R'
+console.log(
+solution(square, applePosition, moveCommands)
+)
