@@ -1,4 +1,4 @@
-import fs from "fs"
+import fs from 'fs'
 
 const range = Number(fs.readFileSync('./input.txt', 'utf8'))
 
@@ -20,7 +20,8 @@ class Queue {
     if (this.head === null) {
       this.head = node
       this.tail = node
-    } else {
+    }
+    else {
       this.tail.next = node
       this.tail = node
     }
@@ -33,12 +34,18 @@ class Queue {
   }
 }
 
-function generateQueue(range) {
+function generateQueue (range) {
   const queue = new Queue()
+
+  for (let i = 1; i < range; i += 1) {
+    queue.enqueue(i)
+  }
+
+  return queue;
 }
 
 function solution (range) {
-  const queue = generateQueue()
+  const queue = generateQueue(range)
   console.log(queue)
 }
 
