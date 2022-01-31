@@ -2,19 +2,46 @@ import fs from "fs"
 
 const [n, k] = fs.readFileSync('./input.txt', 'utf8').split(' ').map(Number)
 
-function solution (n, k) {
-  const result = []
-
-  let acc = 0;
-
-  // 빠진 수를 생각 안하니 정답이 이상하게나옴. linked list 로 푸는게 가장 깔끔할거같은데...
-  while (n > result.length) {
-    const value = n > k + acc ? k + acc : (k + acc) - n
-
-      result.push(value)
-      acc = value
+class Node {
+  constructor (value) {
+    this.value = value
+    this.next = null
   }
-  console.log(result)
+}
+
+class Circular {
+  constructor () {
+    this.head = null
+    this.tail = null
+    this.size = 0;
+  }
+
+  add (value) {
+    const node = new Node(value)
+    if (this.head === null) {
+      this.head = node
+    } else {
+      this.tail.next = node
+    }
+
+    this.tail = node
+    this.tail.next = this.head
+    this.size += 1;
+  }
+}
+
+function generateCircular (n) {
+  const circular = new Circular()
+  for (let i = 1; i <= n;i += 1) {
+    circular.add(i)
+  }
+  console.log(circular)
+  console.log(circular.head.value)
+  console.log(circular.tail.value)
+}
+
+function solution (n, k) {
+  const circular = generateCircular(n)
 }
 
 solution(n, k)
