@@ -1,6 +1,7 @@
 import fs from 'fs'
 
 const lines = fs.readFileSync('./input.txt', 'utf8').split('\n')
+lines.shift()
 
 function reverse (word) {
   let newWord = ''
@@ -13,10 +14,16 @@ function reverse (word) {
 }
 
 function solution (lines) {
-  console.log(lines)
+  let newLines = []
+  for (const line of lines) {
+    const reversedLine = line.split(' ').map(word => {
+      return reverse(word)
+    }).join(' ')
+    newLines.push(reversedLine)
+  }
+  return newLines.join('\n');
 }
 
-// solution(lines)
 console.log(
-reverse('pizza')
+solution(lines)
 )
