@@ -1,23 +1,46 @@
 import fs from "fs"
 
-const lines = fs.readFileSync('./input.txt', 'utf8').split('\n')
+const lines = fs.readFileSync('./case2.txt', 'utf8').split('\n')
 const square = Number(lines.shift())
 const appleLength = Number(lines.shift())
 const applePosition = lines.splice(0, appleLength).map(p => p.split(' ').map(Number))
-const moveCmdLength = Number(lines.shift())
+lines.shift()
 const moveCommands = lines.map(cmd => {
   const [time, direction] = cmd.split(' ')
   return [Number(time), direction]
 })
 
-console.log({
-  square,
-  appleLength,
-  applePosition,
-  moveCmdLength,
-  moveCommands
-})
+// console.log({
+//   square,
+//   appleLength,
+//   applePosition,
+//   moveCommands
+// })
 
+class Position {
+  constructor () {
+    this.value = [0, 0]
+  }
+
+  update(direction) {
+    switch (direction) {
+      case 'R':
+        this.value[0] += 1
+        break;
+      case 'L':
+        this.value[0] -= 1
+        break;
+      case 'T':
+        this.value[1] -= 1
+        break;
+      case 'B':
+        this.value[1] += 1
+        break;
+    }
+  }
+}
+
+// TODO: 사과 심는것부터 검증 필요
 class Square {
   constructor (n, applePosition) {
     this.map = Array.from(Array(n), () => Array.from(Array(n), () => null))
@@ -67,7 +90,7 @@ function generateSquare(n, applePosition) {
  */
 function solution (n, applePosition, moveCommands) {
   const square = generateSquare(n, applePosition)
-  const currentPosition = [0, 0] // x, y
+  const position = new Position()
   // console.log(square.getItem(...currentPosition))
 
   let len = 1;
@@ -76,32 +99,31 @@ function solution (n, applePosition, moveCommands) {
 
   // moveCommands.splice(0, 1)
   for (const [step, changeDirection] of moveCommands) {
-    for (let i = 1; i <= step;i +=1) {
+    for (let i = time + 1; i <= step;i +=1) {
       time += 1;
 
-      switch (direction.value) {
-        case 'R':
-          currentPosition[0] += 1
-          break;
-        case 'L':
-          currentPosition[0] -= 1
-          break;
-        case 'T':
-          currentPosition[1] -= 1
-          break;
-        case 'B':
-          currentPosition[1] += 1
-          break;
-      }
+      position.update(direction.value)
 
-      if (square.getItem(...currentPosition) === undefined) return time; // dead.
-      if (square.getItem(...currentPosition) === '🍎') len += 1; // level up.
+      if (square.getItem(...position.value) === undefined) {
+        console.log(position.value)
+        return time;
+      } // dead.
+      if (square.getItem(...position.value) === '🍎') len += 1; // level up.
     }
 
     changeDirection === 'D'
       ? direction.right()
       : direction.left()
   }
+
+  console.log(position.value, direction.value)
+
+  while(square.getItem(...position.value) !== undefined) {
+    time += 1;
+
+    position.update(direction.value)
+  }
+  return time;
 }
 
 console.log(
