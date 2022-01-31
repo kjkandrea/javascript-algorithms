@@ -35,6 +35,28 @@ class Square {
   }
 }
 
+class Direction {
+  orders = ['R', 'B', 'L', 'T']
+
+  constructor (direction = 'R') {
+    this.index = this.orders.findIndex(v => v === direction);
+  }
+
+  get value () {
+    return this.orders[this.index]
+  }
+
+  right () {
+    this.index += 1
+    if (this.index >= this.orders.length) this.index = 0;
+  }
+
+  left () {
+    this.index -= 1
+    if (0 > this.index) this.index = this.orders.length - 1;
+  }
+}
+
 function generateSquare(n, applePosition) {
   return new Square(n, applePosition);
 }
@@ -72,6 +94,17 @@ function solution (n, applePosition, moveCommands) {
   }
 }
 
-console.log(
-solution(square, applePosition, moveCommands)
-)
+// console.log(
+// solution(square, applePosition, moveCommands)
+// )
+
+const d = new Direction()
+console.log(d.value) // 'R'
+d.left()
+d.left()
+d.left()
+d.left()
+d.left()
+d.left()
+console.log(d.index)
+console.log(d.value) // 'R'
