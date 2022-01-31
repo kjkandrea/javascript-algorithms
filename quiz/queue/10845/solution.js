@@ -14,7 +14,7 @@ class Queue {
   constructor () {
     this.head = null
     this.tail = null
-    this.size = 0;
+    this.size = 0
   }
 
   enqueue (value) {
@@ -22,7 +22,8 @@ class Queue {
     if (this.head === null) {
       this.head = node
       this.tail = node
-    } else {
+    }
+    else {
       this.tail.next = node
       this.tail = node
     }
@@ -30,25 +31,31 @@ class Queue {
   }
 
   dequeue () {
-    if (!this.head) return -1
+    if (this.size === 0) {
+      return -1
+    }
     const value = this.head.value
     this.head = this.head.next
     this.size -= 1
-    return value;
+    return value
   }
 
   get start () {
-    if (!this.head) return -1
+    if (this.size === 0) {
+      return -1
+    }
     return this.head.value
   }
 
   get end () {
-    if (!this.tail) return -1
+    if (this.size === 0) {
+      return -1
+    }
     return this.tail.value
   }
 
   get isEmpty () {
-    return this.head ? 0 : 1
+    return this.size === 0 ? 1 : 0
   }
 }
 
@@ -84,11 +91,13 @@ function solution (lines) {
   const prints = []
   commands.forEach(command => {
     const result = execute(queue, command)
-    if (result !== undefined) prints.push(result)
+    if (result !== undefined) {
+      prints.push(result)
+    }
   })
   return prints
 }
 
 console.log(
-solution(lines).join('\n')
+  solution(lines).join('\n').trim()
 )
