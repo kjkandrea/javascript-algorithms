@@ -13,6 +13,7 @@ class Circular {
   constructor () {
     this.head = null
     this.tail = null
+    this.prevPop = null
     this.size = 0;
   }
 
@@ -29,14 +30,19 @@ class Circular {
     this.size += 1;
   }
 
-  pop (value) {
-    let node = this.head
-    while(node.value !== value) {
+  kill (step) {
+    let node = this.prevPop ?? this.head
+    while(step !== 1) {
       node = node.next
+      step -= 1;
     }
 
+    const value = node.value;
+
+    // kill this node.
     node.value = node.next.value
     node.next = node.next.next
+    this.prevPop = node
     this.size -= 1;
 
     return value
@@ -52,9 +58,14 @@ function generateCircular (n) {
 }
 
 function solution (n, k) {
+  const corps = [] // 요세푸스의 대원들이 죽은 순서
   const circular = generateCircular(n)
-  console.log(circular.pop(2))
-  console.log(circular)
+
+  while (circular.size) { // 모든 대원이 죽을 때 까지
+    corps.push(circular.kill(k)) // 이전에 죽은 대원의 k 번째 대원이 죽는다.
+  }
+
+  console.log(`<${corps.join(', ')}>`)
 }
 
 solution(n, k)
