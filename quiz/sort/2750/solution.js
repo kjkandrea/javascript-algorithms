@@ -11,8 +11,8 @@ function mergeSort(numbers) {
   const left = numbers.slice(0, mid)
   const right = numbers.slice(mid)
 
-  console.log('left :', left)
-  console.log('right :', right)
+  console.log('left :', mergeSort(left))
+  console.log('right :', mergeSort(right))
 }
 
 function solution(numbers) {
