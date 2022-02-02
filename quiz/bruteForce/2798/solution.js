@@ -12,6 +12,7 @@ function solution(n, cards) {
       for (let k = j + 1; k < cards.length; k += 1) {
         const sum = cards[i] + cards[j] + cards[k];
         if (sum === n) return n
+        if (sum > n) continue;
         if (Math.abs(near - n) > Math.abs(sum - n)) near = sum
       }
     }
