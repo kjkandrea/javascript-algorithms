@@ -1,6 +1,6 @@
 import fs from 'fs'
 
-const lines = fs.readFileSync('./input.txt', 'utf8').split('\n')
+const lines = fs.readFileSync('./input.txt', 'utf8').toString().trim().split('\n')
 lines.shift()
 const numbers = lines.map(Number)
 
@@ -31,7 +31,7 @@ function merge (left, right) {
 }
 
 function solution (numbers) {
-  console.log(mergeSort(numbers))
+  console.log(mergeSort(numbers).join('\n').trim())
 }
 
 solution(numbers)
