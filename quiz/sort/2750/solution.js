@@ -13,12 +13,21 @@ function mergeSort (numbers) {
   const left = numbers.slice(0, mid)
   const right = numbers.slice(mid)
 
-  merge(mergeSort(left), mergeSort(right))
+  return merge(mergeSort(left), mergeSort(right))
 }
 
 function merge (left, right) {
-  console.log('left :', left)
-  console.log('right :', right)
+  const sortedArray = []
+
+  while(left.length && right.length) {
+    if (left[0] <= right[0]) {
+      sortedArray.push(left.shift())
+    } else {
+      sortedArray.push(right.shift())
+    }
+  }
+
+  return [...sortedArray, ...left, ...right]
 }
 
 function solution (numbers) {
