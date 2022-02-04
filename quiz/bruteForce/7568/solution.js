@@ -7,7 +7,7 @@ const lines = fs.readFileSync('./input.txt', 'utf8').
 lines.shift()
 const peoples = lines.map(line => line.split(' ').map(Number))
 
-// Fail
+// Fail : https://dpsc615.tistory.com/123 요거 보고 브루트포스 감을 익히자 ㅠㅠ
 function solution (peoples) {
   const priorities = peoples.map(([w, h], index) => [
     peoples.filter(([weight]) => w > weight).length
@@ -39,7 +39,7 @@ function solution (peoples) {
   .sort(([_, a], [__, b]) => a - b)
   .map(([rank]) => rank)
 
-  console.log(scores.join('\n'))
+  console.log(scores.join(' '))
 }
 
 solution(peoples)
