@@ -7,13 +7,39 @@ const lines = fs.readFileSync('./input.txt', 'utf8').
 lines.shift()
 const peoples = lines.map(line => line.split(' ').map(Number))
 
+// Fail
 function solution (peoples) {
-  const scores = peoples.map(([w, h]) =>
+  const priorities = peoples.map(([w, h], index) => [
     peoples.filter(([weight]) => w > weight).length
     + peoples.filter(([_, height]) => h > height).length,
-  )
+    index
+  ])
+  .sort(([a], [b]) => b - a)
 
-  console.log(scores)
+  let before = null;
+  let currentRank = 1;
+  let acc = 0;
+  const scores = priorities.map(([p, i]) => {
+    if (before === null) {
+      before = p
+    }
+
+    if (before > p) {
+      before = p
+      currentRank += acc
+      acc = 0;
+    }
+
+    if (before === p) {
+      acc += 1
+    }
+
+    return [currentRank, i]
+  })
+  .sort(([_, a], [__, b]) => a - b)
+  .map(([rank]) => rank)
+
+  console.log(scores.join('\n'))
 }
 
 solution(peoples)
