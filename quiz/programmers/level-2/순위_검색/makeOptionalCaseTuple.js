@@ -1,17 +1,19 @@
 function makeOptionalCaseTuple (array) {
   const result = []
+  const EMPTY_VALUE = null
 
   array.forEach((value, index, origin) => {
     const rest = origin.slice(index)
 
     result.push(
       Array(origin.length - rest.length)
-        .fill(null)
+        .fill(EMPTY_VALUE)
         .concat(rest)
     )
   })
 
-  return result;
+  result.push((Array(array.length).fill(EMPTY_VALUE))) // 다 없는 경우의 수
+  return result
 
   // 조합 알고리즘 필요
 }
