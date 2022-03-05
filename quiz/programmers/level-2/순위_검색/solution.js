@@ -28,10 +28,11 @@ class UserTable {
         && (position === '-' || data.position === position)
         && (level === '-' || data.level === level)
         && (flavor === '-' || data.flavor === flavor)
-        && (score === '-' || Number(data.score) >= Number(score))
+        && (score === '-' || Number(data.score) >= Number(score)),
     ).length
   }
 
+  // FIXME : 그냥 배열을 저장하면 어떡하니
   static parseTable (payload) {
     return payload.map(data => {
       const [lang, position, level, flavor, score] = data.split(' ')
@@ -48,13 +49,13 @@ class UserTable {
   }
 }
 
-function solution(info, query) {
+function solution (info, query) {
   const { allSearch } = new UserTable(info, query)
   return allSearch()
 }
 
 (function () {
   const [i1, i2, o] = input
-  const result = solution(i1, i2);
+  const result = solution(i1, i2)
   console.log(result, o, result.join() === o.join())
 })()
