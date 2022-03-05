@@ -2,17 +2,28 @@ import input from './input.js'
 
 class UserTable {
   constructor (rawInfo) {
-    this.data = UserTable.parseInfo(rawInfo)
+    const [data, scores] = UserTable.parseInfo(rawInfo);
+    this.data = data
+    this.scores = scores;
   }
 
   static parseInfo (info) {
     const result = new Map()
+    const scores = []
     info.forEach(data => {
       const array = data.split(' ')
       const score = Number(array.pop())
-      result.set(score, UserTable.makeArrayOptionalCases(array))
+      scores.push(score)
+
+      const prev = result.get(score)
+      if (prev) {
+        result.set(score, [...new Set(prev.concat(UserTable.makeArrayOptionalCases(array)))])
+      } else {
+        result.set(score, UserTable.makeArrayOptionalCases(array))
+      }
+
     })
-    return result;
+    return [result, scores.sort((a, b) => a - b)];
   }
 
   static makeArrayOptionalCases = (array, emptyValue = '-') => {
@@ -29,6 +40,21 @@ class UserTable {
   }
 }
 
+class Search {
+  constructor (data, scores, detailQueries) {
+    this.data = data
+    this.scores = scores
+    this.searchLength(detailQueries[0])
+  }
+
+  searchLength = (detailQuery) => {
+    console.log(detailQuery)
+    // const { score, query } = detailQuery
+    // console.log(this.scores)
+    // console.log(this.query)
+  }
+}
+
 const parseQuery = query => {
   const array = query.split(' and ')
   const tail = array.pop()
@@ -41,14 +67,14 @@ const parseQuery = query => {
 }
 
 const solution = (info, query) => {
-  const { data } = new UserTable(info)
-  console.log(query.map(parseQuery))
+  const { data, scores } = new UserTable(info)
+  const detailQueries = query.map(parseQuery)
+  new Search(data, scores, detailQueries)
 }
 
 function main () {
   const [payload, queries, o] = input
   const result = solution(payload, queries)
-  console.log(queries)
   // console.log(result, o, result.join() === o.join())
 }
 
