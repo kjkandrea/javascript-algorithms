@@ -27,12 +27,22 @@ class UserTable {
     result.push(Array(array.length).fill(emptyValue).join(' and '))
     return result;
   }
+}
 
+const parseQuery = query => {
+  const array = query.split(' and ')
+  const tail = array.pop()
+  const [flavor, score] = tail.split(' ')
+  array.push(flavor)
+  return {
+    score: Number(score),
+    query: array.join(' and ')
+  };
 }
 
 const solution = (info, query) => {
   const { data } = new UserTable(info)
-  console.log(data)
+  console.log(query.map(parseQuery))
 }
 
 function main () {
