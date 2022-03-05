@@ -9,11 +9,11 @@ class UserTable {
 
   static parseInfo (info) {
     const result = new Map()
-    const scores = []
+    const scores = new Set()
     info.forEach(data => {
       const array = data.split(' ')
       const score = Number(array.pop())
-      scores.push(score)
+      scores.add(score)
 
       const prev = result.get(score)
       if (prev) {
@@ -23,9 +23,10 @@ class UserTable {
       }
 
     })
-    return [result, scores.sort((a, b) => a - b)];
+    return [result, [...scores].sort((a, b) => a - b)];
   }
 
+  // TODO: 이렇게 조합으로 하지말고 순열로 해야할거같은데...
   static makeArrayOptionalCases = (array, emptyValue = '-') => {
     const result = []
 
@@ -42,16 +43,40 @@ class UserTable {
 
 class Search {
   constructor (data, scores, detailQueries) {
-    this.data = data
+    this.data = data // map
     this.scores = scores
     this.searchLength(detailQueries[0])
   }
 
+  // TODO: makeArrayOptionalCases 가 틀린거같음. 갑분싸되서 구현중단
   searchLength = (detailQuery) => {
-    console.log(detailQuery)
-    // const { score, query } = detailQuery
-    // console.log(this.scores)
-    // console.log(this.query)
+    const { score, query } = detailQuery
+
+    const sliceIndex = Search.binaryIndexSearch(this.scores, score, (current, value) => current >= value)
+    const matchedScores = sliceIndex !== -1 ? this.scores.slice(sliceIndex - 1) : [];
+    console.log(this.data)
+    console.log(matchedScores)
+  }
+
+  static binaryIndexSearch (sortedArray, value, predict) {
+    let left = 0;
+    let right = sortedArray.length - 1
+    let mid = Math.floor((left + right) / 2)
+
+    while(left < right) {
+      if (predict(sortedArray[mid], value)) {
+        console.log(sortedArray[mid])
+        return mid
+      }
+
+      if (sortedArray[mid] < value) {
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
+    }
+
+    return -1;
   }
 }
 
