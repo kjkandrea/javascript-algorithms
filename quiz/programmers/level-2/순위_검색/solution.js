@@ -4,15 +4,23 @@ const parseItem = item => {
   return item.split(' ')
 }
 
-const getInfoCases = info => {
-  const result = info.map(data => makeCase(parseItem(data)))
+const getArrayOptionalCases = (array, emptyValue)  => {
+  const result = []
+
+  array.forEach((value, index, origin) => {
+    const rest = origin.slice(index)
+    const emptyArray = Array(origin.length - rest.length).fill(emptyValue)
+    result.push(emptyArray.concat(rest))
+  })
 
   return result;
 }
 
 const solution = (info, query) => {
-  console.log(getInfoCases(info))
-  console.log(query[0])
+  const testArray = info[0].split(' ');
+  testArray.pop()
+  console.log(getArrayOptionalCases(testArray, '-'))
+  // console.log(query[0])
 }
 
 function main () {
