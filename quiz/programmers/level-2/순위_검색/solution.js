@@ -27,6 +27,7 @@ class UserTable {
   }
 
   // TODO: 이렇게 조합으로 하지말고 순열로 해야할거같은데...
+  // "cpp and - and senior and pizza 250" 날라오면 어쩔?
   static makeArrayOptionalCases = (array, emptyValue = '-') => {
     const result = []
 
