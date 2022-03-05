@@ -1,6 +1,8 @@
 import input from './input.js'
 
 // 성능개선 하면서 버그 생긴듯. 테케 다 통과 못함. 망함
+// * 해시테이블로 만들면서 데이터 잘못맵핑했나
+// * 검색 조건이 잘못되었나?
 class UserTable {
   constructor (payload, query) {
     this.setTable(payload)
@@ -18,12 +20,15 @@ class UserTable {
 
     return matchedScore.map(
       score => this.table.get(score),
-    ).flat().filter(data =>
-      // (score === '-' || Number(data.score) >= Number(score))
-      (lang === '-' || data.lang === lang)
-      && (position === '-' || data.position === position)
-      && (level === '-' || data.level === level)
-      && (flavor === '-' || data.flavor === flavor),
+    ).flat().filter(data => {
+        console.log('data : ', data.lang, data.position, data.level, data.flavor, data.score)
+        console.log('query : ',lang, position, level, flavor, score)
+        // (score === '-' || Number(data.score) >= Number(score))
+        return (lang === '-' || data.lang === lang)
+        && (position === '-' || data.position === position)
+        && (level === '-' || data.level === level)
+        && (flavor === '-' || data.flavor === flavor)
+      }
     ).length
   }
 
@@ -41,10 +46,10 @@ class UserTable {
 
       const prev = table.get(score)
       if (prev) {
-        table.set(score, prev.concat({ lang, position, level, flavor }))
+        table.set(score, prev.concat({ lang, position, level, flavor, score }))
       }
       else {
-        table.set(score, [{ lang, position, level, flavor }])
+        table.set(score, [{ lang, position, level, flavor, score }])
       }
     })
 
@@ -66,6 +71,7 @@ class UserTable {
     let mid = Math.floor((left + right) / 2)
 
     while (left < right) {
+      // 여기가 문제?????
       if (predict(sortedArray[mid], findValue)) {
         return mid
       }
