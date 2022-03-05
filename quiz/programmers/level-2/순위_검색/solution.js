@@ -1,8 +1,11 @@
 import input from './input.js'
 
 class UserTable {
+  scores
+  table
+
   constructor (payload, query) {
-    this.table = UserTable.parseTable(payload)
+    this.setTable(payload)
     this.queries = UserTable.parseQueries(query)
   }
 
@@ -10,6 +13,10 @@ class UserTable {
 
   search = query => {
     const { lang, position, level, flavor, score } = query
+
+    console.log(this.scores, score)
+    const result = UserTable.binarySearchIndex(this.scores, score)
+    console.log(result)
 
     // 다 돌면서 찾기 않게 하기...
     // 근데 해시테이블 형태로 설계하면 메모리 감당가능할까?
@@ -22,18 +29,9 @@ class UserTable {
     // 3. 스코어를 이진검색 돌려 해당하는 스코어들을 찾아낸다.
     // 4. 찾아진 스코어로 HashTable 접근하여 스코어에 해당하는 조건 검색을 완수한다.
     // 5. 그 뒤로 브루트 포스로 모두 다 대조해야하나? 이 뒤엔 아직 깜깜하다..
-    return this.table.filter(
-      data =>
-        (lang === '-' || data.lang === lang)
-        && (position === '-' || data.position === position)
-        && (level === '-' || data.level === level)
-        && (flavor === '-' || data.flavor === flavor)
-        && (score === '-' || Number(data.score) >= Number(score)),
-    ).length
   }
 
-  // FIXME : 그냥 배열을 저장하면 어떡하니
-  static parseTable (payload) {
+  setTable (payload) {
     const scores = new Set()
     const table = new Map()
 
@@ -53,31 +51,48 @@ class UserTable {
       }
     })
 
-    console.log(table)
-
-    return [...scores].sort((a, b) => b - a)
+    this.scores = [...scores].sort((a, b) => a - b)
+    this.table = table
   }
 
   static parseQueries (query) {
     return query.map(data => {
       const [lang, position, level, favorAndScore] = data.split(' and ')
-      const [flavor, score] = favorAndScore.split(' ')
-      return { lang, position, level, flavor, score }
+      const [flavor, stringScore] = favorAndScore.split(' ')
+      return { lang, position, level, flavor, score: Number(stringScore) }
     })
+  }
+
+  static binarySearchIndex (sortedArray, findValue) {
+    let left = 0;
+    let right = sortedArray.length - 1
+    let mid = Math.floor((left + right)/2)
+
+    while (left < right) {
+      if (sortedArray[mid] === findValue) return mid
+
+      if (sortedArray[mid] < findValue) {
+        left = mid + 1
+      } else {
+        right = mid - 1
+      }
+
+      mid = Math.floor((left + right)/2)
+    }
+
+    return -1
   }
 }
 
 function solution (info, query) {
-  const { allSearch } = new UserTable(info, query)
-  return allSearch()
+  const { scores, table, queries, search, allSearch } = new UserTable(info, query)
+
+  return search(queries[0])
+  // return allSearch()
 }
-
-
 
 (function () {
   const [payload, queries, o] = input
   const result = solution(payload, queries)
-
-  console.log(UserTable.parseTable(payload))
   // console.log(result, o, result.join() === o.join())
 })()
