@@ -25,11 +25,14 @@ function getCombination (arr, selectNumber) {
 
   arr.forEach((value, index, origin) => {
     const rest = origin.slice(index + 1 )
-
-    console.log(rest)
+    const combinations = getCombination(rest, selectNumber - 1)
+    const attached = combinations.map(combination => [value, ...combination])
+    result.push(...attached)
   })
+
+  return result;
 }
 
 console.log(
-  getCombination([1,2,3,4], 4)
+  getCombination([1,2,3,4], 3)
 )
