@@ -15,7 +15,7 @@ class UserTable {
     const { lang, position, level, flavor, score } = query
 
     console.log(this.scores, score)
-    const result = UserTable.binarySearchIndex(this.scores, score)
+    const result = UserTable.binarySearchIndex(this.scores, score, (current, score) => current >= score)
     console.log(result)
 
     // 다 돌면서 찾기 않게 하기...
@@ -63,13 +63,13 @@ class UserTable {
     })
   }
 
-  static binarySearchIndex (sortedArray, findValue) {
+  static binarySearchIndex (sortedArray, findValue, predict) {
     let left = 0;
     let right = sortedArray.length - 1
     let mid = Math.floor((left + right)/2)
 
     while (left < right) {
-      if (sortedArray[mid] === findValue) return mid
+      if (predict(sortedArray[mid], findValue)) return mid
 
       if (sortedArray[mid] < findValue) {
         left = mid + 1
