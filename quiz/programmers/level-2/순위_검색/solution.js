@@ -34,10 +34,28 @@ class UserTable {
 
   // FIXME : 그냥 배열을 저장하면 어떡하니
   static parseTable (payload) {
-    return payload.map(data => {
-      const [lang, position, level, flavor, score] = data.split(' ')
-      return { lang, position, level, flavor, score }
+    const scores = new Set()
+    const table = new Map()
+
+    payload.forEach(data => {
+      const [lang, position, level, flavor, stringScore] = data.split(' ')
+
+      const score = Number(stringScore)
+
+      // WARN : SIDE EFFECT
+      scores.add(score)
+
+      const prev = table.get(score);
+      if (prev) {
+        table.set(score, prev.concat({ lang, position, level, flavor }))
+      } else {
+        table.set(score, [{ lang, position, level, flavor }])
+      }
     })
+
+    console.log(table)
+
+    return [...scores].sort((a, b) => b - a)
   }
 
   static parseQueries (query) {
@@ -54,8 +72,12 @@ function solution (info, query) {
   return allSearch()
 }
 
+
+
 (function () {
-  const [i1, i2, o] = input
-  const result = solution(i1, i2)
-  console.log(result, o, result.join() === o.join())
+  const [payload, queries, o] = input
+  const result = solution(payload, queries)
+
+  console.log(UserTable.parseTable(payload))
+  // console.log(result, o, result.join() === o.join())
 })()
