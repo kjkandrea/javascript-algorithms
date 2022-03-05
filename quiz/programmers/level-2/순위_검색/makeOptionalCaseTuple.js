@@ -18,7 +18,7 @@ function makeOptionalCaseTuple (array) {
   // 조합 알고리즘 필요
 }
 
-const data = ['새빨간', '멋쟁이', '토마토']
+const data = ['새빨간', '멋쟁이', '토마토', '나는야', '주스될거야']
 
 console.log(
   makeOptionalCaseTuple(data),
