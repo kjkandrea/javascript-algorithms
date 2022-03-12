@@ -6,16 +6,16 @@ class Heap {
   push(value) {
     this.values.push(value)
 
-    let curIdx = this.values.length - 1
-    let parIdx = Math.floor(curIdx / 2)
+    let current = this.values.length - 1
+    let parent = Math.floor(current / 2)
 
-    while (parIdx !== 0  && this.values[parIdx] < value) {
-      const temp = this.values[parIdx]
-      this.values[parIdx] = value
-      this.values[curIdx] = temp
+    while (parent !== 0 && this.values[parent] < value) {
+      const temp = this.values[parent]
+      this.values[parent] = value
+      this.values[current] = temp
 
-      curIdx = parIdx
-      parIdx = Math.floor(curIdx / 2)
+      current = parent
+      parent = Math.floor(current / 2)
     }
   }
 }
