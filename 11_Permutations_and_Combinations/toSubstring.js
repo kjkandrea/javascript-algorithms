@@ -11,11 +11,9 @@ class ToSubstring {
   // O(n^2)
   getAll () {
     const result = []
-    const { length } = this.str
 
-    const ran = range(length).reverse()
     let headIndex = 0
-    ran.forEach(v => {
+    this.range.forEach(v => {
       while (this.str[v + headIndex - 1]) {
         const tailIndex = v + headIndex
         const string = this.str.substring(headIndex, tailIndex)
