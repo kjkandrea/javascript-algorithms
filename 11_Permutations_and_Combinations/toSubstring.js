@@ -8,11 +8,12 @@ class ToSubstring {
     this.range = range(str.length).reverse()
     this.currentRange = this.range[0]
     this.headIndex = 0;
+    this.currentResult = null;
   }
 
-  next() {
+  next = () => {
     const tailIndex = this.currentRange + this.headIndex
-    const result = this.str.substring(this.headIndex, tailIndex)
+    this.currentResult = this.str.substring(this.headIndex, tailIndex)
 
     if (this.str[tailIndex + this.headIndex]) {
       this.headIndex += 1;
@@ -20,7 +21,7 @@ class ToSubstring {
       this.currentRange -= 1
       this.headIndex = 0;
     }
-    return result;
+    return this.currentResult;
   }
 
   // O(n^2)
@@ -47,6 +48,7 @@ function toSubstring (str) {
 
   const result = toSub.getAll();
   console.log(toSub.next())
+  console.log(toSub.currentResult)
   console.log(toSub.next())
   console.log(toSub.next())
   return result;
