@@ -6,6 +6,21 @@ class ToSubstring {
   constructor (str) {
     this.str = str
     this.range = range(str.length).reverse()
+    this.currentRange = this.range[0]
+    this.headIndex = 0;
+  }
+
+  next() {
+    const tailIndex = this.currentRange + this.headIndex
+    const result = this.str.substring(this.headIndex, tailIndex)
+
+    if (this.str[tailIndex + this.headIndex]) {
+      this.headIndex += 1;
+    } else {
+      this.currentRange -= 1
+      this.headIndex = 0;
+    }
+    return result;
   }
 
   // O(n^2)
@@ -30,7 +45,11 @@ class ToSubstring {
 function toSubstring (str) {
   const toSub = new ToSubstring(str)
 
-  return toSub.getAll()
+  const result = toSub.getAll();
+  console.log(toSub.next())
+  console.log(toSub.next())
+  console.log(toSub.next())
+  return result;
 }
 
 console.log(
